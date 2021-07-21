@@ -189,3 +189,5 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+#own capse u ctrl tauschen
+exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
