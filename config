@@ -88,7 +88,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-#bindsym $mod+h split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -189,3 +189,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+# screen auf den linken/rechten bildschirm schieben
+bindsym $mod+p move workspace to output right
+bindsym $mod+o move workspace to output left

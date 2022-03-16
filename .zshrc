@@ -4,12 +4,17 @@
 #promptinit
 #prompt adam1
 
+# keyboard scroll speed
+xset r rate 300 50
+
 # Enable colors 
 autoload -U colors && colors
 
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias ll='ls -lh' 
-
+alias hello='echo hello'
+alias vim='nvim'
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 #PS1='%n@%m %~$ '
@@ -39,8 +44,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # Use modern completion system
-#autoload -Uz compinit
-#compinit
+autoload -Uz compinit
+compinit
 #
 #zstyle ':completion:*' auto-description 'specify: %d'
 #zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -54,9 +59,9 @@ bindkey -v '^?' backward-delete-char
 #zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 #zstyle ':completion:*' menu select=long
 #zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-#ztyle ':completion:*' use-compctl false
+#zstyle ':completion:*' use-compctl false
 #zstyle ':completion:*' verbose true
-#
+##
 #zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
@@ -78,9 +83,9 @@ zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+#zle -N zle-line-init
+#echo -ne '\e[5 q' # Use beam shape cursor on startup.
+#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 
 _fix_cursor() {
@@ -89,7 +94,7 @@ _fix_cursor() {
 
 precmd_functions+=(_fix_cursor)
 
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export PATH=~/.local/bin:"$PATH"

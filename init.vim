@@ -25,6 +25,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'bling/vim-bufferline'
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'hrsh7th/nvim-compe'
 call plug#end()                                                                                     
