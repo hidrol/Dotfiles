@@ -1,4 +1,4 @@
-"General Settings
+":wincmd v<bar> :Ex <bar> :vertical resize 30<CR>General Settings 
 set relativenumber                                                                                  
 let mapleader = ","                                                                                 
 syntax on                                                                                           
@@ -21,7 +21,10 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"show tabs
 Plug 'bling/vim-bufferline'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
@@ -32,8 +35,13 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1                                                                                
 let g:netrw_winsize = 25
 
+"NerdTree Bindings
+"open tree
+"nnoremap <leader>pv :NERDTree<CR>
+"toggle tree
+nnoremap <C-t> :NERDTreeToggle<CR>
 "open vim file explorer
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 "move to left split
 nnoremap <leader>h :wincmd h<CR>
 "move to down split
@@ -46,7 +54,11 @@ nnoremap <leader>k :wincmd k<CR>
 "fzf keybindings
 nnoremap <C-o> :Buffers<CR> 
 nnoremap <C-p> :Files<CR>
-nnoremap <C-g> :GFiles<CR>
-set exrc    "die beiden zeilen sind fuer projekt settings, dafuer .exrc in project root kopieren
-set secure
+"nnoremap <C-g> :GFiles<CR>
+"set exrc    "die beiden zeilen sind fuer projekt settings, dafuer .exrc in project root kopieren
+"set secure
 source $HOME/.config/nvim/plug-config/coc.vim
+"set transparency"
+hi Normal guibg=NONE ctermbg=NONE
+
+

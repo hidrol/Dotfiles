@@ -1,3 +1,4 @@
+neofetch
 # Set up the prompt
 
 #autoload -Uz promptinit
