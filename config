@@ -247,7 +247,7 @@ bindsym $mod+o move workspace to output left
 #
 exec --no-startup-id /usr/bin/firefox
 exec --no-startup-id i3-msg 'workspace $ws3; exec nautilus'
-exec --no-startup-id i3-msg 'workspace $ws1; exec terminator -e tmux'
+exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
 #exec --no-startup-id /usr/bin/nautilus
 
 #remove title bar

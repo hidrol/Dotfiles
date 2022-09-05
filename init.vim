@@ -2,8 +2,8 @@
 set relativenumber                                                                                  
 let mapleader = ","                                                                                 
 syntax on                                                                                           
-set tabstop=4 softtabstop=4                                                                         
-set shiftwidth=4                                                                                    
+set tabstop=2 softtabstop=2                                                                         
+set shiftwidth=2                                                                                    
 set smartindent                                                                                     
 set expandtab                                                                                       
 set nu                                                                                              
@@ -15,6 +15,13 @@ set colorcolumn=100
 set hidden  "zu anderem buffer wechseln ohne zu speichern                                           
 set background=dark                                                                                 
 set completeopt-=preview "schliesst scratch preview
+"set foldmethod=syntax
+"set foldlevel=0
+"set foldclose=all  "closes fold automatically
+set scrolloff=5
+
+
+
 
 call plug#begin('~/.vim/plugged')                                                                   
 Plug 'gruvbox-community/gruvbox'                                                                    
@@ -25,6 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-bufferline'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
@@ -61,4 +69,25 @@ source $HOME/.config/nvim/plug-config/coc.vim
 "set transparency"
 hi Normal guibg=NONE ctermbg=NONE
 
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+  },
+  indent = {
+    enable = true
+  },
+}
+EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
