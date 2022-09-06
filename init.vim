@@ -19,7 +19,6 @@ set scrolloff=5
 
 
 
-
 call plug#begin('~/.vim/plugged')                                                                   
 Plug 'gruvbox-community/gruvbox'                                                                    
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -38,11 +37,14 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'honza/vim-snippets'
 " For vsnip users.
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
+"Plug 'hrsh7th/cmp-vsnip'
+"Plug 'hrsh7th/vim-vsnip'
+Plug 'dcampos/nvim-snippy'
+Plug 'dcampos/cmp-snippy'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
@@ -118,6 +120,13 @@ hi Normal guibg=NONE ctermbg=NONE
 "lsp-cmp
 set completeopt=menu,menuone,noselect
 
+"snippy mappings
+imap <expr> <Tab> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-advance)' : '<Tab>'
+imap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
+smap <expr> <Tab> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
+smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
+xmap <Tab> <Plug>(snippy-cut-text)
+
 
 lua <<EOF
 --tree sitter config
@@ -139,17 +148,19 @@ require'nvim-treesitter.configs'.setup {
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
         -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     window = {
        completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+       documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
+      ["<C-k>"] = cmp.mapping.select_prev_item(),
+      ["<C-j>"] = cmp.mapping.select_next_item(),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -158,10 +169,10 @@ require'nvim-treesitter.configs'.setup {
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'vsnip' }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+      { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
     })
