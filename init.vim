@@ -15,9 +15,6 @@ set colorcolumn=100
 set hidden  "zu anderem buffer wechseln ohne zu speichern                                           
 set background=dark                                                                                 
 set completeopt-=preview "schliesst scratch preview
-"set foldmethod=syntax
-"set foldlevel=0
-"set foldclose=all  "closes fold automatically
 set scrolloff=5
 
 
@@ -29,22 +26,53 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "show tabs
-Plug 'bling/vim-bufferline'
+"Plug 'bling/vim-bufferline'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
-                                                                                                        
-let g:netrw_banner = 0                                                                              
-let g:netrw_liststyle = 3                                                                           
-let g:netrw_browse_split = 4                                                                        
-let g:netrw_altv = 1                                                                                
-let g:netrw_winsize = 25
 
+"lightline
+"set laststatus=2
+set noshowmode
+"set showtabline=2
+
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
+                                                                                                        
+
+"airline
+
+" enable tabline
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ''
+"let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#right_sep = ''
+"let g:airline#extensions#tabline#right_alt_sep = ''
+
+" enable powerline fonts
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
+" Switch to your current theme
+let g:airline_theme = 'gruvbox'
+
+" Always show tabs
+"set showtabline=2
+
+" We don't need to see things like -- INSERT -- anymore
+set noshowmode
+
+" end airline
 
 
 " LSP config (the mappings used in the default file don't quite work right)
@@ -83,6 +111,7 @@ nnoremap <C-p> :Files<CR>
 hi Normal guibg=NONE ctermbg=NONE
 
 lua <<EOF
+--tree sitter config
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -93,7 +122,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
-
+--code completion
 vim.o.completeopt = "menuone,noselect"
 
 require'compe'.setup {
@@ -166,7 +195,16 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-require'lspconfig'.clangd.setup{}
+--require'lspconfig'.clangd.setup{}
+--this is for ccls instead of clangd
+local lspconfig = require('lspconfig')
+lspconfig.ccls.setup {
+  init_options = {
+    cache = {
+      directory = ".ccls-cache";
+    };
+  }
+}
 
 EOF
 
