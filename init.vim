@@ -1,6 +1,6 @@
 ":wincmd v<bar> :Ex <bar> :vertical resize 30<CR>General Settings 
 set relativenumber                                                                                  
-let mapleader = ","                                                                                 
+let mapleader = " "
 syntax on                                                                                           
 set tabstop=2 softtabstop=2                                                                         
 set shiftwidth=2                                                                                    
@@ -202,4 +202,9 @@ EOF
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
+"set foldmethod=indent
+"highlight Folded guifg=PeachPuff4
+"highlight FoldColumn guibg=darkgrey guifg=white
+"
+"formating
+nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
