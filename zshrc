@@ -15,7 +15,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -lh' 
 alias hello='echo hello'
-alias vi='nvim'
+alias v='nvim'
+alias g='git'
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 #PS1='%n@%m %~$ '

@@ -45,6 +45,8 @@ Plug 'dcampos/cmp-snippy'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'tpope/vim-obsession'
+"Plug 'p00f/clangd_extensions'
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
@@ -109,6 +111,7 @@ xmap <Tab> <Plug>(snippy-cut-text)
 
 
 lua <<EOF
+
 --tree sitter config
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -207,4 +210,5 @@ set foldexpr=nvim_treesitter#foldexpr()
 "highlight FoldColumn guibg=darkgrey guifg=white
 "
 "formating
-nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
+"nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
+nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
