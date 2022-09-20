@@ -1,6 +1,6 @@
 ":wincmd v<bar> :Ex <bar> :vertical resize 30<CR>General Settings 
 set relativenumber                                                                                  
-let mapleader = ","                                                                                 
+let mapleader = " "                                                                                 
 syntax on                                                                                           
 set tabstop=2 softtabstop=2                                                                         
 set shiftwidth=2                                                                                    
@@ -17,7 +17,7 @@ set background=dark
 set completeopt-=preview "schliesst scratch preview
 set scrolloff=5
 
-
+set mouse=a
 
 call plug#begin('~/.vim/plugged')                                                                   
 Plug 'gruvbox-community/gruvbox'                                                                    
@@ -29,20 +29,21 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"lsp and cmp 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+"snippets
 Plug 'honza/vim-snippets'
 " For vsnip users.
 "Plug 'hrsh7th/cmp-vsnip'
 "Plug 'hrsh7th/vim-vsnip'
 Plug 'dcampos/nvim-snippy'
 Plug 'dcampos/cmp-snippy'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+"
 Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()                                                                                     
@@ -113,6 +114,7 @@ nnoremap <leader>k :wincmd k<CR>
 "fzf keybindings
 nnoremap <C-o> :Buffers<CR> 
 nnoremap <C-p> :Files<CR>
+nnoremap <C-g> :Rg<CR>
 "nnoremap <C-g> :GFiles<CR>
 "set transparency"
 hi Normal guibg=NONE ctermbg=NONE
