@@ -1,6 +1,6 @@
 ":wincmd v<bar> :Ex <bar> :vertical resize 30<CR>General Settings 
 set relativenumber                                                                                  
-let mapleader = " "                                                                                 
+let mapleader = " "
 syntax on                                                                                           
 set tabstop=2 softtabstop=2                                                                         
 set shiftwidth=2                                                                                    
@@ -46,44 +46,25 @@ Plug 'dcampos/cmp-snippy'
 "
 Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'tpope/vim-obsession'
+"Plug 'p00f/clangd_extensions'
 call plug#end()                                                                                     
 
 colorscheme gruvbox                                                                                 
 
 "lightline
-"set laststatus=2
+
 set noshowmode
-"set showtabline=2
 
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
-                                                                                                        
 
-"airline
 
-" enable tabline
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ''
-"let g:airline#extensions#tabline#left_alt_sep = ''
-"let g:airline#extensions#tabline#right_sep = ''
-"let g:airline#extensions#tabline#right_alt_sep = ''
-
-" enable powerline fonts
-"let g:airline_powerline_fonts = 1
-"let g:airline_left_sep = ''
-"let g:airline_right_sep = ''
-
-" Switch to your current theme
-"let g:airline_theme = 'simple'
-
-" Always show tabs
-"set showtabline=2
 
 " We don't need to see things like -- INSERT -- anymore
 set noshowmode
-
-" end airline
+"end lightline
 
 
 " LSP config (the mappings used in the default file don't quite work right)
@@ -116,6 +97,7 @@ nnoremap <C-o> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-g> :Rg<CR>
 "nnoremap <C-g> :GFiles<CR>
+
 "set transparency"
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -131,6 +113,7 @@ xmap <Tab> <Plug>(snippy-cut-text)
 
 
 lua <<EOF
+
 --tree sitter config
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -140,75 +123,75 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
-  },
-}
+    },
+  }
 --code completion
 -- Set up nvim-cmp.
-  local cmp = require'cmp'
+local cmp = require'cmp'
 
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
-    window = {
-       completion = cmp.config.window.bordered(),
-       documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ["<C-k>"] = cmp.mapping.select_prev_item(),
-      ["<C-j>"] = cmp.mapping.select_next_item(),
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
+cmp.setup({
+snippet = {
+  -- REQUIRED - you must specify a snippet engine
+  expand = function(args)
+  -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+  -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+  require('snippy').expand_snippet(args.body) -- For `snippy` users.
+  -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+  end,
+  },
+window = {
+  completion = cmp.config.window.bordered(),
+  documentation = cmp.config.window.bordered(),
+  },
+mapping = cmp.mapping.preset.insert({
+["<C-k>"] = cmp.mapping.select_prev_item(),
+["<C-j>"] = cmp.mapping.select_next_item(),
+['<C-b>'] = cmp.mapping.scroll_docs(-4),
+['<C-f>'] = cmp.mapping.scroll_docs(4),
+['<C-Space>'] = cmp.mapping.complete(),
+['<C-e>'] = cmp.mapping.abort(),
+['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+}),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      { name = 'snippy' }, -- For snippy users.
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    { name = 'snippy' }, -- For snippy users.
     }, {
-      { name = 'buffer' },
+    { name = 'buffer' },
     })
   })
 
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
-    })
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+  { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+  { name = 'buffer' },
   })
+})
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
-    }
-  })
+      }
+    })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' }
+    { name = 'path' }
     }, {
-      { name = 'cmdline' }
+    { name = 'cmdline' }
     })
   })
 
-  -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 --require'lspconfig'.clangd.setup{}
 --this is for ccls instead of clangd
 local lspconfig = require('lspconfig')
@@ -216,12 +199,18 @@ lspconfig.ccls.setup {
   init_options = {
     cache = {
       directory = ".ccls-cache";
-    };
+      };
+    }
   }
-}
 
 EOF
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
+"set foldmethod=indent
+"highlight Folded guifg=PeachPuff4
+"highlight FoldColumn guibg=darkgrey guifg=white
+"
+"formating
+"nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
+nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
