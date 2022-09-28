@@ -8,6 +8,9 @@ neofetch
 # keyboard scroll speed
 xset r rate 300 50
 
+#enable glob syntax
+setopt extended_glob
+
 # Enable colors 
 autoload -U colors && colors
 
@@ -16,6 +19,7 @@ alias grep='grep --color=auto'
 alias ll='ls -lh' 
 alias hello='echo hello'
 alias v='nvim'
+alias vi='nvim'
 alias g='git'
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 

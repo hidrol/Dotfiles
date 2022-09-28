@@ -48,6 +48,7 @@ Plug 'dcampos/cmp-snippy'
 Plug 'itchyny/lightline.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tpope/vim-obsession'
+Plug 'majutsushi/tagbar'
 "Plug 'p00f/clangd_extensions'
 call plug#end()                                                                                     
 
@@ -90,6 +91,8 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 "nnoremap <leader>pv :NERDTree<CR>
 "toggle tree
 nnoremap <C-t> :NERDTreeToggle<CR>
+"tag bar toogle
+nmap <C-b> :TagbarToggle<CR>
 "open vim file explorer
 "nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 "move to left split
