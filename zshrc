@@ -100,7 +100,7 @@ _fix_cursor() {
 
 precmd_functions+=(_fix_cursor)
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH=~/.local/bin:"$PATH"

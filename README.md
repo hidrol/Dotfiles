@@ -5,3 +5,4 @@ paths of dotfiles:
 ~/.config/i3/config
 ~/.config/nvim/init.vim
 ~/.vimrc
+~/.tmux.conf

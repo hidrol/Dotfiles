@@ -13,13 +13,15 @@
 
 exec_always "setxkbmap -model pc104 -layout us,de -variant ,, -option grp:alt_shift_toggle"
 
-exec nextcloud
 #own capse u ctrl tauschen
-exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+#exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 
 #exec xrandr --output DVI-0 --left-of HDMI-2
 
-set $term /usr/bin/terminator
+
+set $term kitty
+# start a terminal
+bindsym $mod+Return exec kitty
 
 set $mod Mod4
 
@@ -51,8 +53,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -247,11 +247,17 @@ bindsym $mod+o move workspace to output left
 #
 #exec --no-startup-id /usr/bin/firefox
 #exec --no-startup-id i3-msg 'workspace $ws3; exec nautilus'
-exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
+#exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
 #exec --no-startup-id /usr/bin/nautilus
+exec --no-startup-id i3-msg 'workspace $ws1; exec kitty'
+
+#exec nextcloud
 
 #remove title bar
 new_window 1pixel
 
-exec --no-startup-id feh --no-fehbg --bg-fill '/home/hidrol/Dotfiles/wallpaper_astronaut.png'
-exec --no-startup-id compton --config '/home/hidrol/Dotfiles/compton.config'
+#exec --no-startup-id feh --no-fehbg --bg-fill '${HOME}/Dotfiles/wallpaper_astronaut.png'
+#exec --no-startup-id compton --config '${HOME}/Dotfiles/compton.config'
+#exec --no-startup-id compton --config ~/Dotfiles/compton.conf -b
+exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
+
