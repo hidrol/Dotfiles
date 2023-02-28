@@ -28,9 +28,7 @@ let g:termdebug_wide=1
 "let g:termdebugger="gdb"
 packadd termdebug
 
-"colorscheme tokyonight
-"colorscheme gruvbox
-colorscheme gruvbox-material
+colorscheme gruvbox                                                                                 
                                                                                                         
 let g:netrw_banner = 0                                                                              
 let g:netrw_liststyle = 3                                                                           
@@ -42,10 +40,11 @@ set secure
 
 "lightline
 
+set noshowmode
 
-" let g:lightline = {
-"         \ 'colorscheme': 'gruvbox',
-"         \ }
+let g:lightline = {
+       \ 'colorscheme': 'gruvbox',
+       \ }
 
 
 
@@ -81,23 +80,11 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>l :wincmd l<CR>
 "move to up split
 nnoremap <leader>k :wincmd k<CR>
-"bufferline
-"nnoremap <silent> gb :BufferLinePick<CR>
-"nnoremap <leader>g :BufferLinePick<CR>
-nnoremap <C-o> :BufferLinePick<CR>
-nnoremap <silent> gq :BufferLinePickClose<CR>
-"nnoremap <leader>c :BufferLinePickClose<CR>
-"formating
-"nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
-"nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
-
-
-
 
 "fzf keybindings
-" nnoremap <C-o> :Buffers<CR> 
-" nnoremap <C-p> :Files<CR>
-" nnoremap <C-g> :Rg<CR>
+nnoremap <C-o> :Buffers<CR> 
+nnoremap <C-p> :Files<CR>
+nnoremap <C-g> :Rg<CR>
 "nnoremap <C-g> :GFiles<CR>
 
 "set transparency"
@@ -112,6 +99,7 @@ set completeopt=menu,menuone,noselect
 "#smap <expr> <Tab> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
 "#smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
 "#xmap <Tab> <Plug>(snippy-cut-text)
+
 
 lua <<EOF
 
@@ -200,8 +188,8 @@ cmp.setup.filetype('gitcommit', {
   })
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 --require'lspconfig'.clangd.setup{}
 --this is for ccls instead of clangd
 local lspconfig = require('lspconfig')
@@ -272,62 +260,9 @@ require('lspconfig')['ccls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-
-vim.opt.termguicolors = true
-require("bufferline").setup{
-  -- numbers = function(opts)
-  --   return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
-  -- end,
-
-
-}
-
-
-
-require('telescope').setup{
-  defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-    mappings = {
-      i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
-      }
-    }
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-  },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  }
-}
-
-local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+ 
 
 EOF
-
-" nnoremap <C-o> :Buffers<CR> 
-" nnoremap <C-p> :Files<CR>
-" nnoremap <C-g> :Rg<CR>
-"nnoremap <C-g> :GFiles<CR>
 
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
@@ -335,18 +270,6 @@ EOF
 "highlight Folded guifg=PeachPuff4
 "highlight FoldColumn guibg=darkgrey guifg=white
 "
-
-
-" function! NvimGdbNoTKeymaps()
-"   tnoremap <silent> <buffer> <esc> <c-\><c-n>
-" endfunction
-"
-" let g:nvimgdb_config_override = {
-"   \ 'key_next': 'n',
-"   \ 'key_step': 's',
-"   \ 'key_finish': 'f',
-"   \ 'key_continue': 'c',
-"   \ 'key_until': 'u',
-"   \ 'key_breakpoint': 'b',
-"   \ 'set_tkeymaps': "NvimGdbNoTKeymaps",
-"   \ }
+"formating
+"nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
+nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
