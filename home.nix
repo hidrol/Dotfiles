@@ -10,7 +10,8 @@
 	    # pkgs is the set of all packages in the default home.nix implementation
   ];
 	
-	   home.file.".config/nvim/init.vim".source = ./init.vim;
+	home.file.".config/nvim/init.vim".source = ./init.vim;
+	home.file.".tmux.conf".source = ./tmux.conf;
 
 
   programs.neovim = {
