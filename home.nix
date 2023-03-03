@@ -10,7 +10,7 @@
 	    # pkgs is the set of all packages in the default home.nix implementation
   ];
 	
-	   home.file.".config/nvim/init.vim".source = ~/Dotfiles/init.vim;
+	   home.file.".config/nvim/init.vim".source = ./init.vim;
 
 
   programs.neovim = {
@@ -26,6 +26,7 @@
 #            fzf-vim
             vim-devicons
             nvim-treesitter.withAllGrammars
+            #pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.java ])
             nvim-lspconfig
             cmp-nvim-lsp
             cmp-buffer
