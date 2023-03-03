@@ -89,7 +89,7 @@ nnoremap <silent> gq :BufferLinePickClose<CR>
 "nnoremap <leader>c :BufferLinePickClose<CR>
 "formating
 "nnoremap <silent> ff    <cmd>lua vim.lsp.buf.format { async = true } <CR>
-"nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
+nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
 
 
 
@@ -112,6 +112,11 @@ set completeopt=menu,menuone,noselect
 "#smap <expr> <Tab> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
 "#smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
 "#xmap <Tab> <Plug>(snippy-cut-text)
+"
+"
+"let g:tagbar_width = max([25, winwidth(0) / 5])
+let g:tagbar_width = 25 
+
 
 lua <<EOF
 

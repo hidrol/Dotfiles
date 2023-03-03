@@ -21,30 +21,30 @@
     vimAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
-                	gruvbox 
-            vim-nix 
-            nerdtree 
+      gruvbox 
+      tokyonight-nvim
+      gruvbox-material
+      vim-nix 
+      nerdtree 
 #            fzf-vim
-            vim-devicons
-            nvim-treesitter.withAllGrammars
-            #pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.java ])
-            nvim-lspconfig
-            cmp-nvim-lsp
-            cmp-buffer
-            cmp-path
-            cmp-cmdline
-            nvim-cmp
+      vim-devicons
+      nvim-treesitter.withAllGrammars
+      #pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.java ])
+      nvim-lspconfig
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      nvim-cmp
 #            lightline-vim
-            indent-blankline-nvim
-            tagbar
-            nvim-ts-rainbow
-            nvim-comment
+      indent-blankline-nvim
+      tagbar
+      nvim-ts-rainbow
+      nvim-comment
 #            nvim-gdb
 #            vim-bufferline
-            bufferline-nvim
-            telescope-nvim
-            tokyonight-nvim
-            gruvbox-material
+      bufferline-nvim
+      telescope-nvim
 
     ];
     # Use the Nix package search engine to find
