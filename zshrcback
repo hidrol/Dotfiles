@@ -43,7 +43,7 @@ _comp_options+=(globdots)		# Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 
-# Use vim keys in tab complete menu:
+#Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
@@ -73,7 +73,7 @@ compinit
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
-# Change cursor shape for different vi modes.
+#Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -90,9 +90,9 @@ zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
-#zle -N zle-line-init
-#echo -ne '\e[5 q' # Use beam shape cursor on startup.
-#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+zle -N zle-line-init
+echo -ne '\e[5 q' Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} Use beam shape cursor for each new prompt.
 
 
 _fix_cursor() {
@@ -105,6 +105,7 @@ precmd_functions+=(_fix_cursor)
 #source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs,lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -6,13 +6,79 @@
   home.username = "hidrol";
   home.homeDirectory = "/home/hidrol";
 
-	home.packages = [
-	    # pkgs is the set of all packages in the default home.nix implementation
+	home.packages = with pkgs; [
+	  # pkgs is the set of all packages in the default home.nix implementation
+    tmux
+    neofetch
+    # zsh-autosuggestions
+    # zsh-syntax-highlighting
+    # zsh-vi-mode
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
 	home.file.".tmux.conf".source = ./tmux.conf;
+  home.file.".zshrc".source = ./zshrc;
 
+
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
+    # initExtra = ''
+    #     source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    #     source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+    #   '';
+    #enableCompletion = true;
+    #	ohMyZsh = {
+    #	    enable = true;
+    #};
+    # oh-my-zsh = {
+    #   enable = true;
+    #   plugins = [ "git" ];
+      #theme = "robbyrussell";
+    # };
+    # zplug = {
+    #   enable = true;
+    #   plugins = [
+    #     { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+    #     { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+    #   ];
+    # };
+    plugins = [
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.4.0";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "0.6.0";
+          #sha256 = "0zmq66dzasmr5pwribyh4kbkk23jxbpdw4rjxx0i7dx8jjp2lzl4";
+          #sha256 = "0000000000000000000000000000000000000000000000000000";
+          #sha256 = lib.fakeSha256;
+          sha256 = "sha256-hH4qrpSotxNB7zIT3u7qcog51yTQr5j5Lblq9ZsxuH4=";
+        };
+        file = "zsh-syntax-highlighting.zsh";
+      }
+      # {
+      #   name = "zsh-vi-mode";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "jeffreytse";
+      #     repo = "zsh-vi-mode";
+      #     rev = "0e666689b6b636fee6a80564fd6c4cb02b8b590d";
+      #     sha256 = "sha256-lrnC+VyGLlq3oReF0MtHcQRanA8Av6fDyF8VUT8evrM=";
+      #   };
+      # }
+    ];
+  };
 
   programs.neovim = {
     enable = true;
@@ -45,11 +111,22 @@
 #            vim-bufferline
       bufferline-nvim
       telescope-nvim
-
     ];
+  };
+
+    # Git config using Home Manager modules
+  programs.git = {
+    enable = true;
+    userName = "hidrol";
+    userEmail = "stefan.grambach@googlemail.com";
+    aliases = {
+      st = "status";
+    };
     # Use the Nix package search engine to find
     # even more plugins : https://search.nixos.org/packages
   };
+
+
 	
 
   # This value determines the Home Manager release that your
