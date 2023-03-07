@@ -10,6 +10,7 @@
 	  # pkgs is the set of all packages in the default home.nix implementation
     tmux
     neofetch
+    fzf
     # zsh-autosuggestions
     # zsh-syntax-highlighting
     # zsh-vi-mode
@@ -24,10 +25,16 @@
     enable = true;
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
-    # initExtra = ''
+    initExtra = ''
+      AGKOZAK_CMD_EXEC_TIME=5
+      AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
+      AGKOZAK_COLORS_PROMPT_CHAR='magenta'
+      AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+      AGKOZAK_MULTILINE=0
+      AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
     #     source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     #     source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
-    #   '';
+    '';
     #enableCompletion = true;
     #	ohMyZsh = {
     #	    enable = true;
@@ -44,6 +51,25 @@
     #     { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
     #   ];
     # };
+    shellAliases = {
+      # sl = "exa";
+      # ls = "exa";
+      # l = "exa -l";
+      # la = "exa -la";
+      ip = "ip --color=auto";
+    };
+
+    oh-my-zsh = {
+      enable = true;
+
+      plugins = [
+        #"command-not-found"
+        "git"
+        #"history"
+        #"sudo"
+      ];
+    };
+
     plugins = [
       {
         # will source zsh-autosuggestions.plugin.zsh
@@ -67,6 +93,26 @@
           sha256 = "sha256-hH4qrpSotxNB7zIT3u7qcog51yTQr5j5Lblq9ZsxuH4=";
         };
         file = "zsh-syntax-highlighting.zsh";
+      }
+      {
+        name = "formarks";
+        src = pkgs.fetchFromGitHub {
+          owner = "wfxr";
+          repo = "formarks";
+          rev = "8abce138218a8e6acd3c8ad2dd52550198625944";
+          sha256 = "1wr4ypv2b6a2w9qsia29mb36xf98zjzhp3bq4ix6r3cmra3xij90";
+        };
+        file = "formarks.plugin.zsh";
+      }
+      {
+        name = "agkozak-zsh-prompt";
+        src = pkgs.fetchFromGitHub {
+          owner = "agkozak";
+          repo = "agkozak-zsh-prompt";
+          rev = "v3.7.0";
+          sha256 = "1iz4l8777i52gfynzpf6yybrmics8g4i3f1xs3rqsr40bb89igrs";
+        };
+        file = "agkozak-zsh-prompt.plugin.zsh";
       }
       # {
       #   name = "zsh-vi-mode";
@@ -125,6 +171,7 @@
     # Use the Nix package search engine to find
     # even more plugins : https://search.nixos.org/packages
   };
+
 
 
 	

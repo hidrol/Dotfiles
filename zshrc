@@ -22,7 +22,16 @@ alias hello='echo hello'
 alias v='nvim'
 alias vi='nvim'
 alias g='git'
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+alias ip='ip --color=auto'
+
+# git
+# autoload -Uz vcs_info
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+# RPROMPT='${vcs_info_msg_0_}'
+# #PROMPT='${vcs_info_msg_0_}%# '
+# zstyle ':vcs_info:git:*' formats '%b'
 
 #PS1='%n@%m %~$ '
 #PS1=$'\e[0;31m$ \e[0m'
@@ -101,10 +110,12 @@ _fix_cursor() {
 
 precmd_functions+=(_fix_cursor)
 
-#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/plugins/formarks/formarks.plugin.zsh
+source ~/.zsh/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+
+
 
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color
