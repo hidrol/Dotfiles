@@ -10,7 +10,9 @@
 	  # pkgs is the set of all packages in the default home.nix implementation
     tmux
     neofetch
-    fzf
+    fzf # used for formarks
+    # glfw
+    #kitty
     # zsh-autosuggestions
     # zsh-syntax-highlighting
     # zsh-vi-mode
@@ -19,6 +21,10 @@
 	home.file.".config/nvim/init.vim".source = ./init.vim;
 	home.file.".tmux.conf".source = ./tmux.conf;
   home.file.".zshrc".source = ./zshrc;
+  home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
+  home.file.".config/kitty/current-theme.conf".source = ./current-theme.conf;
+  home.file.".config/i3/config".source = ./config;
+
 
 
   programs.zsh = {
@@ -26,12 +32,12 @@
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     initExtra = ''
-      AGKOZAK_CMD_EXEC_TIME=5
-      AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
-      AGKOZAK_COLORS_PROMPT_CHAR='magenta'
-      AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
-      AGKOZAK_MULTILINE=0
-      AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+      # AGKOZAK_CMD_EXEC_TIME=5
+      # AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
+      # AGKOZAK_COLORS_PROMPT_CHAR='magenta'
+      # AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+      # AGKOZAK_MULTILINE=0
+      # AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
     #     source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     #     source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
     '';

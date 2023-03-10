@@ -110,6 +110,13 @@ _fix_cursor() {
 
 precmd_functions+=(_fix_cursor)
 
+AGKOZAK_CMD_EXEC_TIME=5
+AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
+AGKOZAK_COLORS_PROMPT_CHAR='magenta'
+AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+AGKOZAK_MULTILINE=0
+AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.zsh/plugins/formarks/formarks.plugin.zsh

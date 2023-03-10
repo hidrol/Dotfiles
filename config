@@ -13,8 +13,9 @@
 
 exec_always "setxkbmap -model pc104 -layout us,de -variant ,, -option grp:alt_shift_toggle"
 
+exec nextcloud
 #own capse u ctrl tauschen
-#exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 
 #exec xrandr --output DVI-0 --left-of HDMI-2
 
