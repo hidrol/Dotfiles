@@ -59,6 +59,8 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -121,7 +123,11 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.zsh/plugins/formarks/formarks.plugin.zsh
 source ~/.zsh/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
+#history zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 
 export PATH=~/.local/bin:"$PATH"

@@ -65,16 +65,16 @@
       ip = "ip --color=auto";
     };
 
-    oh-my-zsh = {
-      enable = true;
-
-      plugins = [
+    # oh-my-zsh = {
+    #   enable = true;
+    #
+    #   plugins = [
         #"command-not-found"
-        "git"
+        # "git"
         #"history"
         #"sudo"
-      ];
-    };
+    #   ];
+    # };
 
     plugins = [
       {
@@ -120,6 +120,17 @@
         };
         file = "agkozak-zsh-prompt.plugin.zsh";
       }
+      {
+        name ="zsh-history-substring-search";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-history-substring-search";
+          rev = "v1.0.2";
+          #sha256 = lib.fakeSha256;
+          sha256 = "sha256-Ptxik1r6anlP7QTqsN1S2Tli5lyRibkgGlVlwWZRG3k=";
+          #file = "zsh-history-substring-search.plugin.zsh";
+        };
+      }
       # {
       #   name = "zsh-vi-mode";
       #   src = pkgs.fetchFromGitHub {
@@ -134,7 +145,7 @@
 
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
+    #defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
