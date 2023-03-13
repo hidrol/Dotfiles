@@ -3,8 +3,9 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "hidrol";
-  home.homeDirectory = "/home/hidrol";
+
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
 
 	home.packages = with pkgs; [
 	  # pkgs is the set of all packages in the default home.nix implementation
@@ -155,7 +156,7 @@
       gruvbox-material
       vim-nix 
       nerdtree 
-#            fzf-vim
+      fzf-vim
       vim-devicons
       nvim-treesitter.withAllGrammars
       #pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.java ])
@@ -173,21 +174,39 @@
 #            nvim-gdb
 #            vim-bufferline
       bufferline-nvim
-      telescope-nvim
+      #telescope-nvim
     ];
   };
 
+  # programs.tmux = {
+  #   enable = true;
+  #   plugins = with pkgs; [
+  #     {
+  #       plugin = tmuxPlugins.resurrect;
+  #       extraConfig = ''
+  #       #source /home/ehl/.config/tmux/tmux.conf
+  #       # for vim
+  #       #set -g @resurrect-strategy-vim 'session'
+  #       # for neovim
+  #       set -g @resurrect-processes '~nvim'
+  #       set -g @resurrect-strategy-nvim 'session'
+  #
+  #       '';
+  #     }
+  #   ];
+  # };
+
     # Git config using Home Manager modules
-  programs.git = {
-    enable = true;
-    userName = "hidrol";
-    userEmail = "stefan.grambach@googlemail.com";
-    aliases = {
-      st = "status";
-    };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "hidrol";
+  #   userEmail = "stefan.grambach@googlemail.com";
+  #   aliases = {
+  #     st = "status";
+  #   };
     # Use the Nix package search engine to find
     # even more plugins : https://search.nixos.org/packages
-  };
+  # };
 
 
 
