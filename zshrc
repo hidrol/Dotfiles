@@ -129,6 +129,7 @@ source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+setxkbmap -option "ctrl:nocaps"
 
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color
