@@ -17,6 +17,7 @@
     # zsh-autosuggestions
     # zsh-syntax-highlighting
     # zsh-vi-mode
+    chromium
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
