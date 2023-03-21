@@ -130,6 +130,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 setxkbmap -option "ctrl:nocaps"
+setxkbmap -model pc104 -layout us,de -variant ,, -option grp:alt_shift_toggle
 
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color
