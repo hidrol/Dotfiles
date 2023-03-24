@@ -18,6 +18,7 @@
     # zsh-syntax-highlighting
     # zsh-vi-mode
     chromium
+    gnumake
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
