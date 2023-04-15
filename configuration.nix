@@ -84,7 +84,7 @@ virtualisation.lxd.enable = true;
     libusb
     picom
     gparted
-    vifm
+    #vifm
     lshw
     pciutils
     #lsof see which process is running on device
@@ -108,11 +108,24 @@ virtualisation.lxd.enable = true;
     #glfw2
      #raylib
     nvidia-offload
-    powertop
+    #powertop
     acpi
     lm_sensors
+    #xorg.xev # see keycodes
+    #ntfs3g
+    chromium
     xorg.xev # see keycodes
     ntfs3g
+    efibootmgr
+    gptfdisk
+    #nftables 
+    python3
+    btrfs-progs #for lxc
+    sshfs #test for vim
+    lsb-release
+    tlp #power management
+    hello
+    iptables
   ];
 
   #networking.wireless.userControlled.enable = true;
@@ -148,9 +161,6 @@ virtualisation.lxd.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   environment.shells = with pkgs; [ zsh ];
-
-
-
 
 # Set console.
   console = {
@@ -203,15 +213,18 @@ hardware.opengl.enable = true;
 # Optionally, you may need to select the appropriate driver version for your specific GPU.
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+#  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
   #boot.kernelParams = [ "module_blacklist=i915" ];
 
   #boot.kernelParams = [ "module_blacklist=i915" ];
 
+  #services.tlp.enable = true;
 
 
-  #system.stateVersion = "22.05";
-  system.stateVersion = "latest";
+
+  system.stateVersion = "22.11";
+  #system.stateVersion = "latest";
   #environment.systemPackages = [ nvidia-offload ];
 
   hardware.nvidia.prime = {
@@ -237,14 +250,27 @@ hardware.opengl.enable = true;
     };
   };
 
-  powerManagement = { 
-        enable = true; 
-        cpuFreqGovernor = "powersave"; 
-   };
-   powerManagement.powertop.enable = true;
-   services.thermald.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    vaapiVdpau # for nvidia
+    vaapiIntel
+    libvdpau-va-gl
+    intel-media-driver
+  ];
+  
+  #power management
+  services.tlp.enable = true;
 
-   boot.kernelModules = [ "coretemp" "cpuid" ];
+
+
+  #powerManagement = { 
+        #enable = true; 
+        #cpuFreqGovernor = "powersave"; 
+   #};
+   #powerManagement.powertop.enable = true;
+   #services.thermald.enable = true;
+
+   #boot.kernelModules = [ "coretemp" "cpuid" ];
+  #}
 
 }
 
