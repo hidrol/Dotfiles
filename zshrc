@@ -1,4 +1,10 @@
-. ~/.nix-profile/etc/profile.d/nix.sh
+FILE=~/.nix-profile/etc/profile.d/nix.sh
+if test -f "$FILE"; then
+    echo "$FILE exists."
+    . ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
+#. ~/.nix-profile/etc/profile.d/nix.sh
 neofetch
 # Set up the prompt
 
