@@ -279,6 +279,8 @@ require('lspconfig')['ccls'].setup{
 }
 
 vim.opt.termguicolors = true
+
+
 require("bufferline").setup{
   -- numbers = function(opts)
   --   return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
@@ -326,7 +328,56 @@ require("bufferline").setup{
 --vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 --vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+  require("dapui").setup()
+  local dap, dapui = require("dap"), require("dapui")
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+  end
+ 
+
+  local dap = require('dap')
+  dap.adapters.lldb = {
+    type = 'executable',
+    -- absolute path is important here, otherwise the argument in the `runInTerminal` request will default to $CWD/lldb-vscode
+    --command = '/usr/bin/lldb-vscode',
+    command = '/home/hidrol/.nix-profile/bin/lldb-vscode',
+    name = "lldb"
+  }
+  dap.configurations.cpp = {
+    {
+      name = "Launch",
+      type = "lldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      args = {},
+      runInTerminal = true,
+    },
+  }
+  dap.configurations.c = dap.configurations.cpp
+
+
+
 EOF
+
+nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 
 " nnoremap <C-o> :Buffers<CR> 
 " nnoremap <C-p> :Files<CR>

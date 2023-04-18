@@ -19,6 +19,7 @@
     # zsh-vi-mode
     chromium
     gnumake
+    lldb
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
@@ -170,7 +171,6 @@
       cmp-path
       cmp-cmdline
       nvim-cmp
-#            lightline-vim
       indent-blankline-nvim
       tagbar
       nvim-ts-rainbow
@@ -179,6 +179,8 @@
 #            vim-bufferline
       bufferline-nvim
       #telescope-nvim
+      nvim-dap
+      nvim-dap-ui
     ];
   };
 
