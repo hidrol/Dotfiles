@@ -181,6 +181,7 @@
       #telescope-nvim
       nvim-dap
       nvim-dap-ui
+      #nvim-dap-projects
     ];
   };
 
@@ -203,16 +204,14 @@
   # };
 
     # Git config using Home Manager modules
-  # programs.git = {
-  #   enable = true;
-  #   userName = "hidrol";
-  #   userEmail = "stefan.grambach@googlemail.com";
-  #   aliases = {
-  #     st = "status";
-  #   };
-    # Use the Nix package search engine to find
-    # even more plugins : https://search.nixos.org/packages
-  # };
+  programs.git = {
+    enable = true;
+    userName = "hidrol";
+    userEmail = "stefan.grambach@googlemail.com";
+    aliases = {
+      st = "status";
+    };
+  };
 
 
 
