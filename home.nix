@@ -4,8 +4,10 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  # home.username = builtins.getEnv "USER";
+  # home.homeDirectory = builtins.getEnv "HOME";
+  home.username = "hidrol";
+  home.homeDirectory = "/home/hidrol";
 
 	home.packages = with pkgs; [
 	  # pkgs is the set of all packages in the default home.nix implementation
