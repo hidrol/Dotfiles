@@ -18,8 +18,8 @@ in
     ./nvim.nix
   ];
 
-#  boot.loader.grub.device = "/dev/sda";   # (for BIOS systems only)
-  boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
+  boot.loader.grub.device = "/dev/sda";   # (for BIOS systems only)
+  #boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
 
 
 
@@ -52,7 +52,7 @@ in
   };
 
 #hardware.xone.enable = true;
-  hardware.xpadneo.enable = true;
+  #hardware.xpadneo.enable = true;
 #services.hardware.xow.enable = true;
 
 virtualisation.lxd.enable = true;
@@ -203,7 +203,8 @@ virtualisation.lxd.enable = true;
 # Optionally, you may need to select the appropriate driver version for your specific GPU.
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_5_15;
   #boot.kernelParams = [ "module_blacklist=i915" ];
 
   #boot.kernelParams = [ "module_blacklist=i915" ];
@@ -246,6 +247,9 @@ virtualisation.lxd.enable = true;
 
    #boot.kernelModules = [ "coretemp" "cpuid" ];
   virtualisation.vmware.guest.enable = true;
+  
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8812au ];
+
 
 }
 
