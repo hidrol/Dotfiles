@@ -28,7 +28,7 @@
   users.users.hidrol = {
     isNormalUser = true;
     home = "/home/hidrol";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "lxd" ];
     shell = pkgs.zsh;
   };
 
@@ -46,6 +46,8 @@
   hardware.xpadneo.enable = true;
 #services.hardware.xow.enable = true;
 
+  virtualisation.lxd.enable = true;
+
   environment.systemPackages = with pkgs; [
     #feh
 #  compton
@@ -62,8 +64,8 @@
     tmux 
     joplin-desktop
     nextcloud-client
-    ccls
-    ctags
+    ccls #c language server
+    ctags #for neovim
     htop
     usbutils
     firefox
@@ -72,6 +74,7 @@
     libusb
     picom
     gparted
+    lxc
     #vifm
     #gdb
     #python3
