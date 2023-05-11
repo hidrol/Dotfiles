@@ -11,7 +11,7 @@
 
 	home.packages = with pkgs; [
 	  # pkgs is the set of all packages in the default home.nix implementation
-    tmux
+    #tmux
     neofetch
     fzf # used for formarks
     # glfw
@@ -22,16 +22,20 @@
     chromium
     gnumake
     lldb
+    direnv
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
-	home.file.".tmux.conf".source = ./tmux.conf;
+  home.file.".tmux.conf".source = ./tmux.conf;
+  #home.file.".config/tmux/tmux.conf".source = ./tmux.conf;
   home.file.".zshrc".source = ./zshrc;
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
   home.file.".config/kitty/current-theme.conf".source = ./current-theme.conf;
   home.file.".config/i3/config".source = ./config;
   home.file.".config/i3status/config".source = ./i3statusconfig;
   #home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
+  home.file.".tmux/post_save.sh".source = ./post_save.sh;
+
 
 
 
@@ -184,14 +188,15 @@
       nvim-dap
       nvim-dap-ui
       #nvim-dap-projects
+      vim-obsession
     ];
   };
 
-  # programs.tmux = {
-  #   enable = true;
-  #   plugins = with pkgs; [
-  #     {
-  #       plugin = tmuxPlugins.resurrect;
+  #programs.tmux = {
+    #enable = true;
+    #plugins = with pkgs; [
+      #{
+        #plugin = tmuxPlugins.resurrect;
   #       extraConfig = ''
   #       #source /home/ehl/.config/tmux/tmux.conf
   #       # for vim
@@ -201,9 +206,9 @@
   #       set -g @resurrect-strategy-nvim 'session'
   #
   #       '';
-  #     }
-  #   ];
-  # };
+      #}
+    #];
+  #};
 
     # Git config using Home Manager modules
   programs.git = {

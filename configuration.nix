@@ -102,9 +102,9 @@
     #      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
     #    }];
     #clock24 = true;
-    extraConfig = ''
-      source /home/hidrol/Dotfiles/tmux.conf
-    '';
+    #extraConfig = ''
+      #source /home/hidrol/Dotfiles/tmux.conf
+    #'';
   };
 
   programs.zsh = {

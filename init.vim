@@ -370,6 +370,8 @@ require("bufferline").setup{
 
 EOF
 
+"debug remaps
+
 nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
 nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
 nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
@@ -379,6 +381,15 @@ nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('B
 nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+
+"autocommands
+
+"autocmd VimEnter * NERDTreeToggle
+"for vim obsession plugin
+"autocmd VimEnter * :Obsess
+
+
+
 
 " nnoremap <C-o> :Buffers<CR> 
 " nnoremap <C-p> :Files<CR>
