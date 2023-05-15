@@ -96,13 +96,13 @@
   ];
 
 
-  programs.tmux = {
-    enable = true;
-    baseIndex = 1;
-    plugins = with pkgs.tmuxPlugins; [ 
-      resurrect 
-      continuum
-    ];
+  # programs.tmux = {
+  #   enable = true;
+  #   baseIndex = 1;
+  #   plugins = with pkgs.tmuxPlugins; [ 
+  #     resurrect 
+  #     continuum
+  #   ];
     #   plugins = with pkgs.tmuxPlugins; [{
     #      plugin = resurrect;
     #      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
@@ -111,7 +111,7 @@
     #extraConfig = ''
       #source /home/hidrol/Dotfiles/tmux.conf
     #'';
-  };
+  # };
 
   programs.zsh = {
     enable = true;

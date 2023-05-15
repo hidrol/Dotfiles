@@ -11,7 +11,7 @@
 
 	home.packages = with pkgs; [
 	  # pkgs is the set of all packages in the default home.nix implementation
-    #tmux
+    tmux
     neofetch
     fzf # used for formarks
     # glfw
@@ -23,10 +23,12 @@
     gnumake
     lldb
     direnv
+    gnome.nautilus
+
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
-  home.file.".tmux.conf".source = ./tmux.conf;
+  #home.file.".tmux.conf".source = ./tmux.conf;
   #home.file.".config/tmux/tmux.conf".source = ./tmux.conf;
   home.file.".zshrc".source = ./zshrc;
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
@@ -192,23 +194,22 @@
     ];
   };
 
-  #programs.tmux = {
-    #enable = true;
-    #plugins = with pkgs; [
-      #{
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs; [
+        tmuxPlugins.resurrect
+        tmuxPlugins.continuum
         #plugin = tmuxPlugins.resurrect;
-  #       extraConfig = ''
-  #       #source /home/ehl/.config/tmux/tmux.conf
-  #       # for vim
-  #       #set -g @resurrect-strategy-vim 'session'
-  #       # for neovim
-  #       set -g @resurrect-processes '~nvim'
-  #       set -g @resurrect-strategy-nvim 'session'
-  #
-  #       '';
-      #}
-    #];
-  #};
+    ];
+    extraConfig = ''
+    source /home/hidrol/.config/nixpkgs/tmux.conf
+    # for vim
+    #set -g @resurrect-strategy-vim 'session'
+    # for neovim
+    #set -g @resurrect-processes '~nvim'
+    #set -g @resurrect-strategy-nvim 'session'
+    '';
+  };
 
     # Git config using Home Manager modules
   programs.git = {

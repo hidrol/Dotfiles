@@ -143,3 +143,5 @@ eval "$(direnv hook zsh)" # for direnv
 
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color
+
+
