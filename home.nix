@@ -4,8 +4,8 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 
-  # home.username = builtins.getEnv "USER";
-  # home.homeDirectory = builtins.getEnv "HOME";
+  #home.username = builtins.getEnv "USER";
+  #home.homeDirectory = builtins.getEnv "HOME";
   home.username = "hidrol";
   home.homeDirectory = "/home/hidrol";
 
@@ -24,7 +24,7 @@
     lldb
     direnv
     gnome.nautilus
-
+    gdb
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
@@ -37,9 +37,6 @@
   home.file.".config/i3status/config".source = ./i3statusconfig;
   #home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
   home.file.".tmux/post_save.sh".source = ./post_save.sh;
-
-
-
 
   programs.zsh = {
     enable = true;
@@ -191,6 +188,7 @@
       nvim-dap-ui
       #nvim-dap-projects
       vim-obsession
+      lualine-nvim
     ];
   };
 
@@ -220,10 +218,6 @@
       st = "status";
     };
   };
-
-
-
-	
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -24,7 +24,8 @@
 #            lightline-vim
             indent-blankline-nvim
             tagbar
-            nvim-ts-rainbow
+            #nvim-ts-rainbow
+            rainbow
             nvim-comment
 #            nvim-gdb
 #            vim-bufferline
