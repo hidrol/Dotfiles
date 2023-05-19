@@ -1,5 +1,30 @@
 { config, pkgs,lib, ... }:
 
+# let
+#   fromGitHub = rev: ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+#     pname = "${lib.strings.sanitizeDerivationName repo}";
+#     version = ref;
+#     src = builtins.fetchGit {
+#       url = "https://github.com/HiPhish/nvim-ts-rainbow2";
+#       ref = ref;
+#       rev = rev;
+#     };
+#   };
+# in
+
+# let
+#
+# fromGitHub = rev: ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+#     pname = "${lib.strings.sanitizeDerivationName repo}";
+#     version = ref;
+#     src = builtins.fetchGit {
+#       url = "https://github.com/HiPhish/nvim-ts-rainbow2";
+#       ref = ref;
+#       rev = rev;
+#     };
+#   };
+# in
+
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -189,6 +214,9 @@
       #nvim-dap-projects
       vim-obsession
       lualine-nvim
+      gitsigns-nvim
+      #rainbow
+      #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
   };
 

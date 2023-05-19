@@ -133,7 +133,7 @@ require'nvim-treesitter.configs'.setup {
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    -- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
@@ -407,6 +407,8 @@ require('lualine').setup {
   }
   dap.configurations.c = dap.configurations.cpp
 
+  require('gitsigns').setup()
+
 
 
 EOF
@@ -422,6 +424,9 @@ nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('B
 nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+
+let g:rainbow_active = 1
+
 
 "autocommands
 
