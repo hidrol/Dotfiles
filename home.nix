@@ -215,6 +215,8 @@
       vim-obsession
       lualine-nvim
       gitsigns-nvim
+      friendly-snippets
+      luasnip
       #rainbow
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
