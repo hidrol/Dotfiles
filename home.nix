@@ -50,6 +50,7 @@
     direnv
     gnome.nautilus
     gdb
+    #vscode
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
@@ -216,7 +217,12 @@
       lualine-nvim
       gitsigns-nvim
       friendly-snippets
-      luasnip
+      #luasnip
+      #nvim-snippy
+      #cmp-snippy
+      vim-vsnip
+      vim-vsnip-integ
+      cmp-vsnip
       #rainbow
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
