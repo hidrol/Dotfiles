@@ -1,7 +1,7 @@
 {
   inputs = {
     #other inputs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +23,19 @@
           inherit system;
           modules = [
             ./desktop/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.hidrol = {
+                imports = [ ./home.nix ];
+              };
+            }
+          ];
+        };
+        work_laptop = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./work_laptop/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
