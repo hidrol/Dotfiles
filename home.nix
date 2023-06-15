@@ -50,6 +50,10 @@
     direnv
     gnome.nautilus
     gdb
+    ripgrep # used for telescope
+    fd
+    man-pages
+    firefox
     #vscode
   ];
 	
@@ -61,7 +65,7 @@
   home.file.".config/kitty/current-theme.conf".source = ./current-theme.conf;
   home.file.".config/i3/config".source = ./config;
   home.file.".config/i3status/config".source = ./i3statusconfig;
-  #home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
+  home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
   home.file.".tmux/post_save.sh".source = ./post_save.sh;
 
   programs.zsh = {
@@ -196,6 +200,8 @@
       vim-devicons
       nvim-treesitter.withAllGrammars
       #pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [ p.c p.java ])
+      #nvim-treesitter.withPlugins (p: [ p.c p.java p.python p.rust p.nix p.cpp p.bash p.cmake p.dockerfile p.devicetree p.diff p.json p.lua p.make p.markdown p.toml p.vim p.yaml ])
+      #nvim-treesitter.withPlugins (p: [ p.c p.java ])
       nvim-lspconfig
       cmp-nvim-lsp
       cmp-buffer
@@ -209,7 +215,8 @@
 #            nvim-gdb
 #            vim-bufferline
       bufferline-nvim
-      #telescope-nvim
+      plenary-nvim
+      telescope-nvim
       nvim-dap
       nvim-dap-ui
       #nvim-dap-projects

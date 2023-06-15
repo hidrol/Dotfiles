@@ -96,8 +96,8 @@ nnoremap <leader>f    <cmd>lua vim.lsp.buf.format { async = true } <CR>
 
 "fzf keybindings
 "nnoremap <C-o> :Buffers<CR> 
-nnoremap <C-p> :Files<CR>
-nnoremap <C-g> :Rg<CR>
+"nnoremap <C-p> :Files<CR>
+"nnoremap <C-g> :Rg<CR>
 "nnoremap <C-g> :GFiles<CR>
 
 "set transparency"
@@ -377,8 +377,8 @@ require('lualine').setup {
 
 
 
---require('telescope').setup{
- -- defaults = {
+require('telescope').setup{
+  -- defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
   --  mappings = {
@@ -406,13 +406,13 @@ require('lualine').setup {
     -- }
     -- please take a look at the readme of the extension you want to configure
   --}
---}
+}
 
---local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<C-p>', builtin.find_files, {})
---vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
---vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
---vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
   require("dapui").setup()
   local dap, dapui = require("dap"), require("dapui")
@@ -466,7 +466,7 @@ nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
 nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+"nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 

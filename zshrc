@@ -131,6 +131,8 @@ source ~/.zsh/plugins/formarks/formarks.plugin.zsh
 source ~/.zsh/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
+alias nix="noglob nix" #for nix flakes problem '#'
+
 #history zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

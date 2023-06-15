@@ -43,37 +43,38 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  # services.xserver.enable = true;
+  #
+  # # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  #
+  # # Configure keymap in X11
+  # services.xserver = {
+  #   layout = "us";
+  #   xkbVariant = "";
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  hardware.pulseaudio.enable = true;
+  nixpkgs.config.pulseaudio = true;
+
+  # Enable sound with pipewire.
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = false;
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -82,11 +83,27 @@
   users.users.hidrol = {
     isNormalUser = true;
     description = "hidrol";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
+    #extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" "lxd" "docker" "video" ];
+    shell = pkgs.zsh;
+    #packages = with pkgs; [
+    #  firefox
     #  thunderbird
-    ];
+    #];
+  };
+
+  #hardware.pulseaudio.enable = true;
+  sound.mediaKeys = {
+    enable = true;
+    volumeStep = "5%";
+  };
+  
+  virtualisation.lxd.enable = true;
+  virtualisation.docker.enable = true;
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 
   # Enable automatic login for the user.
@@ -97,18 +114,149 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
+  networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault false;
+  networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
+  networking.interfaces.enp0s31f6.ipv4.addresses = [ {
+    address = "192.168.10.95";
+    prefixLength = 24;
+  } ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-	vim
-	git
+    #feh
+#  compton
+    #jstest-gtk
+    unzip
+    zip
+    epdfview
+    kitty
+    kitty-themes
+    neofetch
+    zsh
+    git
+    wget 
+    #tmux 
+    joplin-desktop
+    nextcloud-client
+    ccls #c language server
+    ctags #for neovim
+    htop
+    usbutils
+    firefox
+    xclip
+    gcc
+    libusb
+    picom
+    gparted
+    lxc
+    #xorg.xbacklight
+    brightnessctl
+    acpilight
+    #vifm
+    #gdb
+    python3
+    #lldb
+    #gcc
+    #alsa-lib
+    #mesa
+    #xorg.libX11
+    #xorg.libXrandr
+    #xorg.libXi
+    #xorg.libXcursor
+    #xorg.libXinerama
+    #xorg.libXext
+    #libatomic_ops
+    #gnumake
+    #cmake
+    #glfw2
+     #raylib
+    auto-cpufreq
+    ntfs3g
   ];
 
+  documentation.enable = true;
+  documentation.man.enable = true;
+  documentation.dev.enable = true;
+
+  services.auto-cpufreq.enable = true;
+
+  # programs.light.enable = true;
+  # xev keycode have to be substracted with 8
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      # brightness
+      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xbacklight -dec 5"; }
+      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xbacklight -inc 5"; }
+
+      #{ keys = [ 121 ]; events = [ "key" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master toggle"; }
+
+      # "Lower Volume" media key
+      # { keys = [ 60 ]; events = [ "key" "rep" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master ${config.sound.mediaKeys.volumeStep}- unmute"; }
+
+      # "Raise Volume" media key
+      # { keys = [ 61 ]; events = [ "key" "rep" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master ${config.sound.mediaKeys.volumeStep}+ unmute"; }
+      #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/amixer Master 8%-"; }
+      #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/amixer Master 8%+"; }
+      # { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l hidrol -c 'amixer -q set Master 5%- unmute'"; }
+      # { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l hidrol -c 'amixer -q set Master 5%+ unmute'"; }
+
+    ];
+  };
+
+  #  services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
+  # '';
+
+
+
+  programs.zsh = {
+    enable = true;
+    #enableAutosuggestions = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    #	ohMyZsh = {
+    #	    enable = true;
+    #};
+  };
+
+
+  users.defaultUserShell = pkgs.zsh;
+
+  environment.shells = with pkgs; [ zsh ];
+
+  console = {
+    font = "Lat2-Terminus16";
+    #font = "FiraCode";
+    #keyMap = "us";
+	  useXkbConfig = true;
+  };
+
+
+  fonts.fonts = with pkgs; [
+    fira-code
+    fira-code-symbols
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+
+  services.openssh.enable = true;
+
+  services.xserver.enable  = true;
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.defaultSession  = "none+i3";
+  services.xserver.layout  = "us";
+  services.xserver.displayManager.lightdm.enable  = true;
+  #services.xserver.displayManager.autoLogin.enable  = true;
+  #services.xserver.displayManager.autoLogin.user  = "hidrol";
+  services.xserver.xkbOptions = "ctrl:swapcaps";
+  services.xserver.libinput.touchpad.naturalScrolling = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
