@@ -323,6 +323,8 @@ require('lspconfig')['ccls'].setup{
     flags = lsp_flags,
 }
 
+require'lspconfig'.nil_ls.setup{}
+
 vim.opt.termguicolors = true
 
 
@@ -471,6 +473,7 @@ nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
 nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 
 let g:rainbow_active = 1
+
 
 
 "autocommands

@@ -114,12 +114,12 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault false;
-  networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  networking.interfaces.enp0s31f6.useDHCP =  false;
+  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
   networking.interfaces.enp0s31f6.ipv4.addresses = [ {
-    address = "192.168.10.95";
-    prefixLength = 24;
+     address = "192.168.10.95";
+     prefixLength = 24;
   } ];
 
   # Allow unfree packages
@@ -155,7 +155,7 @@
     picom
     gparted
     lxc
-    #xorg.xbacklight
+    xorg.xbacklight
     brightnessctl
     acpilight
     #vifm

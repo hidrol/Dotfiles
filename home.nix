@@ -54,6 +54,9 @@
     fd
     man-pages
     firefox
+    ccls #c language server
+    nil
+    nodePackages.pyright
     #vscode
   ];
 	
