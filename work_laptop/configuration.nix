@@ -114,13 +114,22 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  networking.interfaces.enp0s31f6.useDHCP =  false;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault false;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
   # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
   networking.interfaces.enp0s31f6.ipv4.addresses = [ {
-     address = "192.168.10.95";
-     prefixLength = 24;
+    address = "192.168.10.95";
+    prefixLength = 24;
   } ];
+
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
+
+  # networking = {
+  #   defaultGateway = {
+  #     address = "192.168.10.1";
+  #     interface = "enp0s31f6";
+  #   };
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -155,7 +164,7 @@
     picom
     gparted
     lxc
-    xorg.xbacklight
+    #xorg.xbacklight
     brightnessctl
     acpilight
     #vifm
@@ -178,6 +187,7 @@
      #raylib
     auto-cpufreq
     ntfs3g
+    pciutils
   ];
 
   documentation.enable = true;
@@ -288,5 +298,12 @@
 		package = pkgs.nixFlakes;
 		extraOptions = "experimental-features = nix-command flakes";
 	};
+
+  #myString = "${pkgs.tmuxPlugins.re
+  environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
+
+
+
+
 
 }

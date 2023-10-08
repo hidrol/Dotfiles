@@ -1,5 +1,14 @@
 { config, pkgs,lib, ... }:
 
+# let test = pkgs.writeText "test" ''
+#     hello world!
+#   '';
+# in
+
+  # let
+  # myString = "${pkgs.tmuxPlugins.resurrect}";
+  # in
+
 # let
 #   fromGitHub = rev: ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
 #     pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -44,7 +53,7 @@
     # zsh-autosuggestions
     # zsh-syntax-highlighting
     # zsh-vi-mode
-    chromium
+    #chromium
     gnumake
     lldb
     direnv
@@ -58,6 +67,12 @@
     nil
     nodePackages.pyright
     #vscode
+    screen
+    dtc # for decompiling dtb files
+    ubootTools # for extracting fitimage files
+    wireshark
+    nmap
+    nix-index
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
@@ -213,7 +228,8 @@
       nvim-cmp
       indent-blankline-nvim
       tagbar
-      nvim-ts-rainbow
+      #nvim-ts-rainbow
+      #nvim-ts-rainbow2
       nvim-comment
 #            nvim-gdb
 #            vim-bufferline
@@ -233,7 +249,7 @@
       vim-vsnip
       vim-vsnip-integ
       cmp-vsnip
-      #rainbow
+      # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
   };
@@ -277,4 +293,10 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  #environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
+
+
+  #builtins.writeFile "/path/to/output.txt" = myString;
+
 }

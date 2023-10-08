@@ -5,7 +5,7 @@ if test -f "$FILE"; then
 fi
 
 #. ~/.nix-profile/etc/profile.d/nix.sh
-neofetch
+#neofetch
 # Set up the prompt
 
 #autoload -Uz promptinit
@@ -146,4 +146,65 @@ eval "$(direnv hook zsh)" # for direnv
 export PATH=~/.local/bin:"$PATH"
 export TERM=screen-256color
 
+
+# pgrep tmux > /dev/null
+# if [[ $? -eq 0 ]]
+# then
+#     echo "tmux is running"
+# else
+    #exec tmux
+    #hello
+
+#     echo "tmux is not running"
+#     exec tmux ; `nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
+# fi
+
+#parent_process=$(ps -o comm= -p $(ps -o ppid= -p $$))
+
+# if [ "$parent_process" = "tmux: server" ]; then
+#     echo "The parent process is tmux."
+# else
+#     echo "The parent process is not tmux."
+    #tmux new-session -d -s my_session -c '`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh'
+    #tmux new-session -d -s my_session -c 
+    #echo wait
+    #sleep 3
+    #echo wait
+    #`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
+# fi
+#
+
+
+#grandparent_pid=$(ps -o ppid= -p $(ps -o ppid= -p $$))
+#echo $grandparent_pid
+#grandparent_process=$(ps -o comm= -p $grandparent_pid)
+
+tmux ls > /dev/null
+if [ $? -ne 0 ]; then
+  echo "no tmux server running"
+  tmux new-session -d -s my_session '~/.config/nixpkgs/restoretmux.zsh'
+  tmux a
+fi
+
+
+
+# if [ "$grandparent_process" = "tmux" ]; then
+#     echo "The grandfather process is tmux."
+# else
+#     echo "The grandfather process is not tmux."
+# fi
+
+#[ -z "$TMUX" ] && exec tmux &&
+
+#sleep 1 &&
+#[ -z "$TMUX" ] && tmux &&
+#hello
+#exec tmux
+#echo test > ~/testtest.txt
+#exec `nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
+#[ -z "$TMUX" ] && `nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
+#`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
+#test=`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`
+#test=${test}/scripts/restore.sh
+#exec $test
 
