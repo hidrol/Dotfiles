@@ -35,6 +35,12 @@
 # in
 
 {
+  # testprograms = import ./test.nix {
+  #   inherit pkgs;
+  # };
+
+  # testing modules
+  imports = [ ./test.nix ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 
@@ -55,23 +61,23 @@
     # zsh-vi-mode
     #chromium
     gnumake
-    lldb
-    direnv
-    gnome.nautilus
-    gdb
+    lldb # c debugger
+    direnv # for nix shell
+    gnome.nautilus # gui finder
+    gdb # c debugger
     ripgrep # used for telescope
-    fd
+    fd # needed for telescop or recommended
     man-pages
     firefox
     ccls #c language server
-    nil
+    nil # nix language server
     nodePackages.pyright
     #vscode
     screen
     dtc # for decompiling dtb files
     ubootTools # for extracting fitimage files
     wireshark
-    nmap
+    #nmap
     nix-index
   ];
 	

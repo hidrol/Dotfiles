@@ -179,6 +179,7 @@ export TERM=screen-256color
 #echo $grandparent_pid
 #grandparent_process=$(ps -o comm= -p $grandparent_pid)
 
+# autostart tmux
 tmux ls > /dev/null
 if [ $? -ne 0 ]; then
   echo "no tmux server running"
@@ -186,25 +187,7 @@ if [ $? -ne 0 ]; then
   tmux a
 fi
 
+# for zoxide
+eval "$(zoxide init zsh)"
 
-
-# if [ "$grandparent_process" = "tmux" ]; then
-#     echo "The grandfather process is tmux."
-# else
-#     echo "The grandfather process is not tmux."
-# fi
-
-#[ -z "$TMUX" ] && exec tmux &&
-
-#sleep 1 &&
-#[ -z "$TMUX" ] && tmux &&
-#hello
-#exec tmux
-#echo test > ~/testtest.txt
-#exec `nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
-#[ -z "$TMUX" ] && `nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
-#`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`/scripts/restore.sh
-#test=`nix-locate -- tmux-plugins/resurrect | sed 's/.* d //'`
-#test=${test}/scripts/restore.sh
-#exec $test
 

@@ -300,7 +300,7 @@
 	};
 
   #myString = "${pkgs.tmuxPlugins.re
-  environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
+  #environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
 
 
 
