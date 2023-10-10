@@ -18,6 +18,8 @@ exec nextcloud
 exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 
 #exec xrandr --output DVI-0 --left-of HDMI-2
+#exec xrandr --output HDMI-1-1 --mode 1920x1080 --auto --left-of eDP-1
+
 
 
 set $term kitty
@@ -250,7 +252,7 @@ bindsym $mod+o move workspace to output left
 #exec --no-startup-id i3-msg 'workspace $ws3; exec nautilus'
 #exec --no-startup-id i3-msg 'workspace $ws1; exec terminator'
 #exec --no-startup-id /usr/bin/nautilus
-exec --no-startup-id i3-msg 'workspace $ws1; exec kitty'
+
 
 #exec nextcloud
 
@@ -261,4 +263,18 @@ new_window 1pixel
 #exec --no-startup-id compton --config '${HOME}/Dotfiles/compton.config'
 #exec --no-startup-id compton --config ~/Dotfiles/compton.conf -b
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
+
+#exec autorandr --change
+exec autorandr --load docked
+exec --no-startup-id i3-msg 'workspace $ws1; exec kitty'
+
+#exec --no-startup-id i3-msg "workspace $ws3; move workspace to output right"
+#exec --no-startup-id i3-msg 'workspace $ws3; exec joplin-desktop'
+
+#exec --no-startup-id i3-msg 'workspace $ws2; exec firefox'
+#exec --no-startup-id i3-msg 'workspace $ws3; exec joplin-desktop'
+
+exec --no-startup-id i3-msg "workspace $ws2; move workspace to output right"
+exec --no-startup-id i3-msg "workspace $ws1; move workspace to output left"
+
 

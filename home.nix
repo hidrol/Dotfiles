@@ -70,6 +70,7 @@
     man-pages
     firefox
     ccls #c language server
+    ctags
     nil # nix language server
     nodePackages.pyright
     #vscode
@@ -79,6 +80,9 @@
     wireshark
     #nmap
     nix-index
+    autorandr
+    xclip
+    python3
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;

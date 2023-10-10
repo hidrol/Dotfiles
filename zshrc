@@ -179,8 +179,8 @@ export TERM=screen-256color
 #echo $grandparent_pid
 #grandparent_process=$(ps -o comm= -p $grandparent_pid)
 
-# autostart tmux
-tmux ls > /dev/null
+#autostart tmux
+tmux ls >/dev/null
 if [ $? -ne 0 ]; then
   echo "no tmux server running"
   tmux new-session -d -s my_session '~/.config/nixpkgs/restoretmux.zsh'
