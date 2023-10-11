@@ -3,6 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
+    let awesomescript = import ./my-awesome-script.nix {inherit pkgs;};
+    in
 
 {
   imports =
@@ -188,6 +190,7 @@
     auto-cpufreq
     ntfs3g
     pciutils
+    awesomescript
   ];
 
   documentation.enable = true;
