@@ -3,8 +3,10 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-    let awesomescript = import ./my-awesome-script.nix {inherit pkgs;};
-    in
+  let 
+    awesomescript = import ./my-awesome-script.nix {inherit pkgs;};
+    restoretmux = import ./restoretmux.nix {inherit pkgs;};
+  in
 
 {
   imports =
@@ -191,6 +193,7 @@
     ntfs3g
     pciutils
     awesomescript
+    restoretmux
   ];
 
   documentation.enable = true;

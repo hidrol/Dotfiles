@@ -13,7 +13,7 @@
 
 exec_always "setxkbmap -model pc104 -layout us,de -variant ,, -option grp:alt_shift_toggle"
 
-exec nextcloud
+#exec nextcloud
 #own capse u ctrl tauschen
 exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 
@@ -135,7 +135,7 @@ set $ws10 "10"
 assign [class="firefox" instance="Navigator"] $ws2
 assign [class="org.gnome.Nautilus" instance="Org.gnome.Nautilus"] $ws3
 assign [class="teams-for-linux" instance="teams-for-linux"] $ws4
-assign [class="joplin" instance="Joplin"] $ws5
+#assign [class="joplin" instance="Joplin"] $ws5
 
 #assign [class="x-terminal-emulator" instance="X-terminal-emulator"] → $ws1
 #assign [class="firefox" instance="Navigator"] → $ws2
@@ -262,11 +262,20 @@ new_window 1pixel
 #exec --no-startup-id feh --no-fehbg --bg-fill '${HOME}/Dotfiles/wallpaper_astronaut.png'
 #exec --no-startup-id compton --config '${HOME}/Dotfiles/compton.config'
 #exec --no-startup-id compton --config ~/Dotfiles/compton.conf -b
-exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
+#exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
-#exec autorandr --change
-exec autorandr --load docked
-exec --no-startup-id i3-msg 'workspace $ws1; exec kitty'
+#exec --no-startup-id /home/hidrol/.config/nixpkgs/makeworkspace.sh
+
+exec autorandr --load docked 
+#exec autorandr --load docked2
+
+#exec --no-startup-id kitty; workspace $ws1; move workspace to output left
+exec --no-startup-id kitty; workspace $ws1;
+
+exec --no-startup-id i3-msg "workspace "$ws1"; move workspace to output DP-1-1-1"
+
+
+#exec --no-startup-id i3-msg 'workspace $ws1; exec kitty;';
 
 #exec --no-startup-id i3-msg "workspace $ws3; move workspace to output right"
 #exec --no-startup-id i3-msg 'workspace $ws3; exec joplin-desktop'
@@ -274,7 +283,7 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec kitty'
 #exec --no-startup-id i3-msg 'workspace $ws2; exec firefox'
 #exec --no-startup-id i3-msg 'workspace $ws3; exec joplin-desktop'
 
-exec --no-startup-id i3-msg "workspace $ws2; move workspace to output right"
-exec --no-startup-id i3-msg "workspace $ws1; move workspace to output left"
+# exec --no-startup-id i3-msg "workspace $ws2; move workspace to output right;";
+# exec --no-startup-id i3-msg "workspace $ws1; move workspace to output left;"
 
 
