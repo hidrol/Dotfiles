@@ -83,6 +83,24 @@
     autorandr
     xclip
     python3
+    unzip
+    zip
+    epdfview
+    git
+    wget 
+    #tmux 
+    joplin-desktop
+    #nextcloud-client
+    #ccls #c language server
+    #ctags #for neovim
+    htop
+    usbutils
+    firefox
+    xclip
+    libusb
+    lxc
+    ntfs3g
+    pciutils
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;

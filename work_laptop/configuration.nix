@@ -145,29 +145,11 @@
     #feh
 #  compton
     #jstest-gtk
-    unzip
-    zip
-    epdfview
     kitty
     kitty-themes
-    neofetch
     zsh
-    git
-    wget 
-    #tmux 
-    joplin-desktop
-    #nextcloud-client
-    #ccls #c language server
-    #ctags #for neovim
-    htop
-    usbutils
-    firefox
-    xclip
-    gcc
-    libusb
     picom
     gparted
-    lxc
     #xorg.xbacklight
     brightnessctl
     acpilight
@@ -190,8 +172,6 @@
     #glfw2
      #raylib
     auto-cpufreq
-    ntfs3g
-    pciutils
     awesomescript
     restoretmux
   ];
