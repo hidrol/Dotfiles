@@ -12,6 +12,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #../i3.nix
+      ../sway.nix
+      ../nvidia.nix
+      ##../hyprland.nix
     ];
 
   # Bootloader.
@@ -46,25 +50,11 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  #
-  # # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  #
-  # # Configure keymap in X11
-  # services.xserver = {
-  #   layout = "us";
-  #   xkbVariant = "";
-  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
 
   # Enable sound with pipewire.
   # sound.enable = true;
@@ -80,8 +70,6 @@
 
   # };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hidrol = {
@@ -96,7 +84,6 @@
     #];
   };
 
-  #hardware.pulseaudio.enable = true;
   sound.mediaKeys = {
     enable = true;
     volumeStep = "5%";
@@ -110,13 +97,6 @@
     setSocketVariable = true;
   };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "hidrol";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
 
   # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault false;
   networking.interfaces.wlp0s20f3.useDHCP = true;
@@ -142,35 +122,13 @@
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
-    #feh
-#  compton
-    #jstest-gtk
     kitty
     kitty-themes
     zsh
     picom
     gparted
-    #xorg.xbacklight
     brightnessctl
     acpilight
-    #vifm
-    #gdb
-    #python3
-    #lldb
-    #gcc
-    #alsa-lib
-    #mesa
-    #xorg.libX11
-    #xorg.libXrandr
-    #xorg.libXi
-    #xorg.libXcursor
-    #xorg.libXinerama
-    #xorg.libXext
-    #libatomic_ops
-    #gnumake
-    #cmake
-    #glfw2
-     #raylib
     auto-cpufreq
     awesomescript
     restoretmux
@@ -184,27 +142,6 @@
 
   # programs.light.enable = true;
   # xev keycode have to be substracted with 8
-  services.actkbd = {
-    enable = true;
-    bindings = [
-      # brightness
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xbacklight -dec 5"; }
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/xbacklight -inc 5"; }
-
-      #{ keys = [ 121 ]; events = [ "key" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master toggle"; }
-
-      # "Lower Volume" media key
-      # { keys = [ 60 ]; events = [ "key" "rep" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master ${config.sound.mediaKeys.volumeStep}- unmute"; }
-
-      # "Raise Volume" media key
-      # { keys = [ 61 ]; events = [ "key" "rep" ]; command = "${pkgs.alsaUtils}/bin/amixer -q set Master ${config.sound.mediaKeys.volumeStep}+ unmute"; }
-      #{ keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/amixer Master 8%-"; }
-      #{ keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/amixer Master 8%+"; }
-      # { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l hidrol -c 'amixer -q set Master 5%- unmute'"; }
-      # { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l hidrol -c 'amixer -q set Master 5%+ unmute'"; }
-
-    ];
-  };
 
   #  services.udev.extraRules = ''
   #   ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
@@ -228,8 +165,8 @@
   environment.shells = with pkgs; [ zsh ];
 
   console = {
-    font = "Lat2-Terminus16";
-    #font = "FiraCode";
+    #font = "Lat2-Terminus16";
+    font = "FiraCode";
     #keyMap = "us";
 	  useXkbConfig = true;
   };
@@ -243,20 +180,6 @@
 
   services.openssh.enable = true;
 
-  # hardware.nvidia.modesetting.enable = true;
-  # services.xserver.videoDrivers  = [ "nvidia" ];
-  # hardware.opengl.enable = true;
-
-  services.xserver.enable  = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.defaultSession  = "none+i3";
-  services.xserver.layout  = "us";
-  services.xserver.displayManager.lightdm.enable  = true;
-  #services.xserver.displayManager.autoLogin.enable  = true;
-  #services.xserver.displayManager.autoLogin.user  = "hidrol";
-  services.xserver.xkbOptions = "ctrl:swapcaps";
-  services.xserver.libinput.touchpad.naturalScrolling = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -265,10 +188,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -300,39 +220,9 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-
-    # Modesetting is needed most of the time
-    modesetting.enable = true;
-
-	# Enable power management (do not disable this unless you have a reason to).
-	# Likely to cause problems on laptops and with screen tearing if disabled.
-	powerManagement.enable = true;
-
-    # Use the NVidia open source kernel module (which isn't “nouveau”).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    open = false;
-
-    # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  hardware.nvidia.prime = {
-    sync.enable = true;
-
-	# Make sure to use the correct Bus ID values for your system!
-    nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
-  };
+  #services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nouveau"];
+  #programs.hyprland.enable = true;
 
 
 

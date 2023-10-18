@@ -327,4 +327,22 @@
 
   #builtins.writeFile "/path/to/output.txt" = myString;
 
+    wayland.windowManager.sway = {
+    enable = true;
+    extraConfig = ''
+      input "type:keyboard" {
+        xkb_options ctrl:swapcaps
+      }
+    '';
+    config = rec {
+      modifier = "Mod4";
+      # Use kitty as default terminal
+      terminal = "kitty"; 
+      startup = [
+        # Launch Firefox on start
+        #{command = "firefox";}
+      ];
+    };
+  };
+
 }
