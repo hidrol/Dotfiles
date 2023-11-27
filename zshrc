@@ -48,7 +48,7 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
@@ -68,8 +68,8 @@ bindkey -v '^?' backward-delete-char
 
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+#autoload -Uz compinit
+#compinit
 #
 #zstyle ':completion:*' auto-description 'specify: %d'
 #zstyle ':completion:*' completer _expand _complete _correct _approximate

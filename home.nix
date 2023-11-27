@@ -40,7 +40,10 @@
   # };
 
   # testing modules
-  imports = [ ./test.nix ];
+  imports = [ 
+    ./home/test.nix 
+    ./home/sway-home.nix 
+  ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 
@@ -50,6 +53,9 @@
   home.homeDirectory = "/home/hidrol";
 
 	home.packages = with pkgs; [
+    (pkgs.python3.withPackages (ps: [
+      ps.debugpy
+    ]))
 	  # pkgs is the set of all packages in the default home.nix implementation
     tmux
     neofetch
@@ -82,7 +88,7 @@
     nix-index
     autorandr
     xclip
-    python3
+    #python3
     unzip
     zip
     epdfview
@@ -101,6 +107,8 @@
     lxc
     ntfs3g
     pciutils
+    #wl-clipboard
+
   ];
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
@@ -236,6 +244,11 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraPackages = with pkgs; [
+      rust-analyzer
+      wl-clipboard
+      rustfmt
+    ];
     plugins = with pkgs.vimPlugins; [
       gruvbox 
       tokyonight-nvim
@@ -266,6 +279,7 @@
       telescope-nvim
       nvim-dap
       nvim-dap-ui
+      nvim-dap-python
       #nvim-dap-projects
       vim-obsession
       lualine-nvim
@@ -327,22 +341,5 @@
 
   #builtins.writeFile "/path/to/output.txt" = myString;
 
-    wayland.windowManager.sway = {
-    enable = true;
-    extraConfig = ''
-      input "type:keyboard" {
-        xkb_options ctrl:swapcaps
-      }
-    '';
-    config = rec {
-      modifier = "Mod4";
-      # Use kitty as default terminal
-      terminal = "kitty"; 
-      startup = [
-        # Launch Firefox on start
-        #{command = "firefox";}
-      ];
-    };
-  };
 
 }

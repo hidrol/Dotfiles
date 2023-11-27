@@ -455,6 +455,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
   }
   dap.configurations.c = dap.configurations.cpp
 
+  require("dap-python").setup("python", {})
+
   require('gitsigns').setup()
 
 
