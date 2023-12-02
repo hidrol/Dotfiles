@@ -40,7 +40,11 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.hidrol = {
-              imports = [ ./home.nix ];
+              imports = [ 
+                ./home.nix 
+                ./home/programs/gui.nix
+                ./home/programs/no-gui.nix
+              ];
             };
           }
         ];

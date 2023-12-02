@@ -4,8 +4,8 @@
 
   # testing modules
   imports = [ 
-    ./home/programs/no-gui.nix
-    ./home/programs/gui.nix
+    #./home/programs/no-gui.nix
+    #./home/programs/gui.nix
     ./home/test.nix 
     ./home/sway-home.nix 
   ];
@@ -28,6 +28,7 @@
   home.file.".config/i3status/config".source = ./i3statusconfig;
   home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
   home.file.".tmux/post_save.sh".source = ./post_save.sh;
+
 
   programs.zsh = {
     enable = true;

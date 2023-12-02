@@ -17,12 +17,12 @@
     gnumake
     lldb # c debugger
     direnv # for nix shell
-    gnome.nautilus # gui finder
+    #gnome.nautilus # gui finder
     gdb # c debugger
     ripgrep # used for telescope
     fd # needed for telescop or recommended
     man-pages
-    firefox
+    #firefox
     ccls #c language server
     ctags
     nil # nix language server
@@ -31,28 +31,28 @@
     screen
     dtc # for decompiling dtb files
     ubootTools # for extracting fitimage files
-    wireshark
+    #wireshark
     #nmap
     nix-index
-    autorandr
-    xclip
+    #autorandr
+    #xclip
     #python3
     unzip
     zip
-    epdfview
+    #epdfview
     git
     wget 
     #tmux 
-    joplin-desktop
+    #joplin-desktop
     #nextcloud-client
     #ccls #c language server
     #ctags #for neovim
     htop
     usbutils
-    firefox
-    xclip
+    #firefox
+    #xclip
     libusb
-    lxc
+    #lxc
     ntfs3g
     pciutils
     #wl-clipboard

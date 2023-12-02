@@ -106,8 +106,12 @@
     prefixLength = 24;
   } ];
 
-  networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
+  #networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
+  networking.nameservers = [ "192.168.2.50" ];
 
+  networking.dhcpcd.extraConfig = "nohook resolv.conf";
+    # If using NetworkManager:
+  networking.networkmanager.dns = "none";
   # networking = {
   #   defaultGateway = {
   #     address = "192.168.10.1";
@@ -195,6 +199,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
