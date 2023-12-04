@@ -1,6 +1,29 @@
 { pkgs, lib, ... }:
 {
 
+  home.packages = with pkgs; [
+    grim
+    slurp
+    wl-clipboard
+  ];
+
+   programs.wofi = {
+    enable = true;
+    style = builtins.readFile ./style.css;
+  };
+
+  programs.bash = {
+    enable = true;
+    profileExtra = ''
+      export SDL_VIDEODRIVER=wayland
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export QT_QPA_PLATFORM=wayland
+      export XDG_CURRENT_DESKTOP=sway
+      export XDG_SESSION_DESKTOP=sway
+      [ "$(tty)" = "/dev/tty1" ] && exec ${pkgs.sway}/bin/sway
+    '';
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -43,6 +66,21 @@
       #];
       window.border = 0;
     };
+  };
+
+   gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.gnome.gnome-themes-extra;
+      name = "Adwaita-dark";
+    };
+     cursorTheme = {
+       name = "Adwaita";
+     };
+   };
+  
+  home.sessionVariables = {
+    XCURSOR_THEME = "Adwaita";
   };
 
 

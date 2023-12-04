@@ -107,11 +107,11 @@
   } ];
 
   #networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
-  networking.nameservers = [ "192.168.2.50" ];
+  networking.nameservers = [ "192.168.2.50" "1.1.1.1" "9.9.9.9." "8.8.8.8" ];
 
-  networking.dhcpcd.extraConfig = "nohook resolv.conf";
+  networking.dhcpcd.extraConfig = "nohook resolv.conf"; #needed for pihole
     # If using NetworkManager:
-  networking.networkmanager.dns = "none";
+  networking.networkmanager.dns = "none"; # needed for pihole
   # networking = {
   #   defaultGateway = {
   #     address = "192.168.10.1";
@@ -228,6 +228,7 @@
   #services.xserver.videoDrivers = ["nvidia"];
   services.xserver.videoDrivers = ["nouveau"];
   #programs.hyprland.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
 
 
