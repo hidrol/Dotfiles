@@ -1,7 +1,7 @@
 { config, pkgs,lib, ... }:
-  let 
-    restoretmux = import ./restoretmux.nix {inherit pkgs;};
-  in
+  # let 
+  #   restoretmux = import ./restoretmux.nix {inherit pkgs;};
+  # in
 
 {
 
@@ -18,7 +18,7 @@
       ps.debugpy
     ]))
 	  # pkgs is the set of all packages in the default home.nix implementation
-    restoretmux
+    #restoretmux
     tmux
     neofetch
     fzf # used for formarks
@@ -80,7 +80,7 @@
 
 	
 	home.file.".config/nvim/init.vim".source = ./init.vim;
-  #home.file.".tmux.conf".source = ./tmux.conf;
+  home.file.".tmux.conf".source = ./tmux.conf;
   #home.file.".config/tmux/tmux.conf".source = ./tmux.conf;
   home.file.".zshrc".source = ./zshrc;
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
@@ -272,14 +272,14 @@
         tmuxPlugins.continuum
         #plugin = tmuxPlugins.resurrect;
     ];
-    extraConfig = ''
-    source /home/hidrol/.config/nixpkgs/tmux.conf
+    #extraConfig = ''
+    #source /home/hidrol/.config/nixpkgs/tmux.conf
     # for vim
     #set -g @resurrect-strategy-vim 'session'
     # for neovim
     #set -g @resurrect-processes '~nvim'
     #set -g @resurrect-strategy-nvim 'session'
-    '';
+    #'';
   };
 
     # Git config using Home Manager modules
