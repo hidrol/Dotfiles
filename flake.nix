@@ -44,7 +44,7 @@
               imports = [ 
                 ./home.nix 
                 ./home/programs/gui.nix
-                ./home/programs/no-gui.nix
+                #./home/programs/no-gui.nix
                 ./home/sway-home.nix 
               ];
             };
@@ -56,7 +56,10 @@
     homeConfigurations = {
       hidrol = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ./home/programs/no-gui.nix ];
+        modules = [ 
+          ./home.nix 
+          #./home/programs/no-gui.nix 
+        ];
       };
     };
   };
