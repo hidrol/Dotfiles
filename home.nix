@@ -273,9 +273,8 @@
         #plugin = tmuxPlugins.resurrect;
     ];
     #richtig nerviger workaround weil .config/tmux/.conf bestimmte einstellungen ueberschreibt!!!
-    #vlt doch kein workaround sondern korrekt so
     extraConfig = '' 
-    source ./tmux.conf
+    source /home/hidrol/.config/nixpkgs/tmux.conf
     # for vim
     #set -g @resurrect-strategy-vim 'session'
     # for neovim
