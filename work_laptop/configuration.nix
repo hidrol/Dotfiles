@@ -224,11 +224,23 @@
     driSupport32Bit = true;
   };
 
+  hardware.opengl.extraPackages = with pkgs; [
+    vaapiVdpau # for nvidia
+    vaapiIntel
+    libvdpau-va-gl
+    intel-media-driver
+  ];
+
+  hardware.nvidia.modesetting.enable = true;
+  #services.xserver.videoDrivers  = [ "nvidia" ];
+
+
   # Load nvidia driver for Xorg and Wayland
   #services.xserver.videoDrivers = ["nvidia"];
   services.xserver.videoDrivers = ["nouveau"];
   #programs.hyprland.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_5_15;
 
 
 

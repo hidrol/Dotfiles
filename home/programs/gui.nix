@@ -13,7 +13,7 @@
     # zsh-autosuggestions
     # zsh-syntax-highlighting
     # zsh-vi-mode
-    #chromium
+    chromium
     #gnumake
     #lldb # c debugger
     #direnv # for nix shell

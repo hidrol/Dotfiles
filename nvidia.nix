@@ -8,7 +8,9 @@
 
 	# Enable power management (do not disable this unless you have a reason to).
 	# Likely to cause problems on laptops and with screen tearing if disabled.
-	  powerManagement.enable = true;
+	  powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
 
     # Use the NVidia open source kernel module (which isn't “nouveau”).
     # Support is limited to the Turing and later architectures. Full list of 
