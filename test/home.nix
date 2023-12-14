@@ -7,6 +7,7 @@
     #./home/programs/no-gui.nix
     #./home/programs/gui.nix
     ./home/test.nix 
+    ./home/sway-home.nix 
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
