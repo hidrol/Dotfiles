@@ -2,6 +2,9 @@
   # let 
   #   restoretmux = import ./restoretmux.nix {inherit pkgs;};
   # in
+  let 
+    restoretmux = import ./restoretmux.nix {inherit pkgs;};
+  in
 
 {
 
@@ -18,7 +21,7 @@
       ps.debugpy
     ]))
 	  # pkgs is the set of all packages in the default home.nix implementation
-    #restoretmux
+    restoretmux
     tmux
     neofetch
     fzf # used for formarks
