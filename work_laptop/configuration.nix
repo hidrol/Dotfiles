@@ -109,9 +109,9 @@
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
   #networking.nameservers = [ "192.168.2.50" "1.1.1.1" "9.9.9.9." "8.8.8.8" ];
 
-  networking.dhcpcd.extraConfig = "nohook resolv.conf"; #needed for pihole
+  #networking.dhcpcd.extraConfig = "nohook resolv.conf"; #needed for pihole
     # If using NetworkManager:
-  networking.networkmanager.dns = "none"; # needed for pihole
+  #networking.networkmanager.dns = "none"; # needed for pihole
   # networking = {
   #   defaultGateway = {
   #     address = "192.168.10.1";
@@ -129,7 +129,7 @@
     kitty
     kitty-themes
     zsh
-    picom
+    #picom
     gparted
     brightnessctl
     acpilight
@@ -170,13 +170,13 @@
 
   console = {
     #font = "Lat2-Terminus16";
-    font = "FiraCode";
+    # font = "FiraCode";
     #keyMap = "us";
 	  useXkbConfig = true;
   };
 
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -237,7 +237,7 @@
 
   # Load nvidia driver for Xorg and Wayland
   #services.xserver.videoDrivers = ["nvidia"];
-  services.xserver.videoDrivers = ["nouveau"];
+  #services.xserver.videoDrivers = ["nouveau"];
   #programs.hyprland.enable = true;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.kernelPackages = pkgs.linuxPackages_5_15;

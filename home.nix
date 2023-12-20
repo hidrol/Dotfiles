@@ -97,7 +97,7 @@
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     initExtra = ''
       # AGKOZAK_CMD_EXEC_TIME=5
       # AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
@@ -263,6 +263,7 @@
       vim-vsnip
       vim-vsnip-integ
       cmp-vsnip
+      rainbow-delimiters-nvim
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
