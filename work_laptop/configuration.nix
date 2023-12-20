@@ -5,7 +5,7 @@
 { config, pkgs, ... }:
   let 
     awesomescript = import ./my-awesome-script.nix {inherit pkgs;};
-    restoretmux = import ./restoretmux.nix {inherit pkgs;};
+    #restoretmux = import ./restoretmux.nix {inherit pkgs;};
   in
 
 {
@@ -106,8 +106,8 @@
     prefixLength = 24;
   } ];
 
-  #networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
-  networking.nameservers = [ "192.168.2.50" "1.1.1.1" "9.9.9.9." "8.8.8.8" ];
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
+  #networking.nameservers = [ "192.168.2.50" "1.1.1.1" "9.9.9.9." "8.8.8.8" ];
 
   networking.dhcpcd.extraConfig = "nohook resolv.conf"; #needed for pihole
     # If using NetworkManager:
@@ -135,7 +135,7 @@
     acpilight
     auto-cpufreq
     awesomescript
-    restoretmux
+    #restoretmux
   ];
 
   documentation.enable = true;
