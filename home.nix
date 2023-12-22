@@ -88,8 +88,8 @@
   home.file.".zshrc".source = ./zshrc;
   home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
   home.file.".config/kitty/current-theme.conf".source = ./current-theme.conf;
-  home.file.".config/i3/config".source = ./config;
-  home.file.".config/i3status/config".source = ./i3statusconfig;
+  #home.file.".config/i3/config".source = ./config;
+  #home.file.".config/i3status/config".source = ./i3statusconfig;
   home.file.".config/joplin-desktop/settings.json".source = ./joplin.json;
   home.file.".tmux/post_save.sh".source = ./post_save.sh;
 

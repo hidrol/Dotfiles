@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  #imports = [./home/waybar.nix];
+  imports = [./waybar.nix];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -22,11 +22,15 @@
       exec_always kanshi
 
       #smart_boarders on
+      bar { 
+        swaybar_command waybar
+      }
 
     '';
       # output "Dell Inc. DELL P2419H 5VH1MV2" position 0 0
       # output eDP-1 disable 
     config = rec {
+      bars = [];
       modifier = "Mod4";
       # Use kitty as default terminal
       terminal = "kitty"; 
