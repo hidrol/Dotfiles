@@ -1,9 +1,12 @@
 { pkgs, lib, ... }:
 {
+  #imports = [./home/waybar.nix];
 
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
+      default_border none
+
       input type:touchpad {
           tap enabled
           natural_scroll enabled
