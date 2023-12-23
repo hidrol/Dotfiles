@@ -2,6 +2,11 @@
 {
   imports = [./waybar.nix];
 
+  programs.wofi = {
+    enable = true;
+    #style = builtins.readFile ./style.css;
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -17,7 +22,6 @@
         repeat_rate 30
 
       }
-      set $menu bemenu-run
 
       exec_always kanshi
 
@@ -41,6 +45,7 @@
         "XF86AudioLowerVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 8%-";
         "${modifier}+Shift+o" = "move workspace to output left";
         "${modifier}+Shift+p" = "move workspace to output right";
+        "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show=drun --allow-images --insensitive";
       };
       #startup = [
         # Launch Firefox on start

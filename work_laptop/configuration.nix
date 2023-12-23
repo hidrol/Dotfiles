@@ -135,6 +135,7 @@
     acpilight
     auto-cpufreq
     awesomescript
+    xorg.xhost
     #restoretmux
   ];
 
