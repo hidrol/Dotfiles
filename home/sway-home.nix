@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  imports = [./waybar.nix];
+  imports = [./waybar];
 
   programs.wofi = {
     enable = true;
@@ -43,6 +43,8 @@
         "XF86AudioMute" = "exec ${pkgs.alsa-utils}/bin/amixer set Master toggle";
         "XF86AudioRaiseVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 8%+";
         "XF86AudioLowerVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 8%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brillo}/bin/brillo -q -A 3";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brillo}/bin/brillo -q -U 3";
         "${modifier}+Shift+o" = "move workspace to output left";
         "${modifier}+Shift+p" = "move workspace to output right";
         "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show=drun --allow-images --insensitive";

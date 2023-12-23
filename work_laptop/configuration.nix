@@ -137,7 +137,10 @@
     awesomescript
     xorg.xhost
     #restoretmux
+    brillo
   ];
+
+  hardware.brillo.enable = true;
 
   documentation.enable = true;
   documentation.man.enable = true;
