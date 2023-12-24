@@ -183,7 +183,9 @@
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    cantarell-fonts
+    font-awesome
+    (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
   ];
 
   services.openssh.enable = true;

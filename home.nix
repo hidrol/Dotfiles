@@ -264,6 +264,7 @@
       vim-vsnip-integ
       cmp-vsnip
       rainbow-delimiters-nvim
+      colorizer
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];

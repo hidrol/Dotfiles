@@ -22,20 +22,25 @@
             "modules-center"= ["sway/workspaces"];
             # "modules-right"= [ "custom/cpugovernor" "cpu" "temperature" "custom/gpu" "pulseaudio" "bluetooth" "network" "tray"];
             #my modules
-            "modules-right"= [ "custom/cpugovernor" "cpu" "custom/gpu" "pulseaudio" "network" "tray"];
+            "modules-right"= [  "cpu"  "pulseaudio" "network" "tray" "battery" ];
             # Modules configuration
             "sway/workspaces" = {
                 "disable-scroll" = true;
                 "all-outputs"= true;
                 "format"= "{icon}";
                 "format-icons"= {
-                    "1"= "<span color=\"#D8DEE9\"></span>";
-                    "2"= "<span color=\"#88C0D0\"></span>";
-                    "3"= "<span color=\"#A3BE8C\"></span>";
+                    "1"= "<span color=\"#D8DEE9\"></span>";
+                    "2"= "<span color=\"#88C0D0\"></span>";
+                    "3"= "<span color=\"#A3BE8C\"></span>";
                     "4"= "<span color=\"#D8DEE9\"></span>";
                     "urgent"= "";
-                    "focused"= "";
+                    # "focused"= "";
                     "default"= "";
+# set $ws1 "1:"
+# set $ws2 "2:"
+# set $ws3 "3:"
+# set $ws4 "4:"
+# set $ws5 "5:"
                 };
             };
             "sway/mode"= {
@@ -74,14 +79,14 @@
                 "spacing"= 5;
             };
             "clock"= {
-                "format"= "  {:%H:%M   %e %b}";
+                "format"= "  {:%H:%M    %e %b}";
                 "tooltip-format"= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 "today-format"= "<b>{}</b>";
                 "on-click"= "gnome-calendar";
             };
             "cpu"= {
                 "interval"= "1";      
-                "format"= "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>";
+                "format"= "   {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>";
                 "max-length"= 13;
                 "min-length"= 13;
                 "on-click"= "kitty -e htop --sort-key PERCENT_CPU";
@@ -188,6 +193,15 @@
             #     "on-click"= "exec swaymsg 'scratchpad show'";
             #     "on-click-right"= "exec swaymsg 'move scratchpad'";
             # };    
+
+            battery = {
+            states.critical = 10;
+            format = "{capacity}% {icon}";
+            format-charging = "{capacity}%  ";
+            format-plugged = "{capacity}%  ";
+            format-alt = "{time} {icon}";
+            format-icons = [" " " " " " " " " "];
+          };
         }
 ];
  style = builtins.readFile ./style.css;

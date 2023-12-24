@@ -26,9 +26,6 @@
       exec_always kanshi
 
       #smart_boarders on
-      bar { 
-        swaybar_command waybar
-      }
 
     '';
       # output "Dell Inc. DELL P2419H 5VH1MV2" position 0 0
