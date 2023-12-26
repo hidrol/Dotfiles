@@ -6,20 +6,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-colors.url = "github:misterio77/nix-colors";
   };
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     #variables
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
+    pkgs =nixpkgs.legacyPackages.${system};
 
-    lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      desktop = lib.nixosSystem {
+      desktop = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./desktop/configuration.nix
@@ -32,23 +29,12 @@
           }
         ];
       };
-      work_laptop = lib.nixosSystem {
+      work_laptop = nixpkgs.lib.nixosSystem {
         inherit system;
+        #specialArgs = { inherit inputs; };
         modules = [
           ./work_laptop/configuration.nix
           ./greetd.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hidrol = {
-              imports = [ 
-                ./home.nix 
-                ./home/programs/gui.nix
-                #./home/programs/no-gui.nix
-                ./home/sway-home.nix 
-              ];
-            };
-          }
         ];
       };
     };
@@ -56,9 +42,10 @@
     homeConfigurations = {
       hidrol = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
         modules = [ 
           ./home.nix 
-          #./home/programs/no-gui.nix 
+          #./home/programs/gui.nix 
         ];
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs,lib, ... }:
+{ config, pkgs,lib, inputs, ... }:
   # let 
   #   restoretmux = import ./restoretmux.nix {inherit pkgs;};
   # in
@@ -10,10 +10,14 @@
 
   # testing modules
   imports = [ 
-    #./home/programs/no-gui.nix
-    #./home/programs/gui.nix
+    ./home/programs/no-gui.nix
+    ./home/programs/gui.nix
     ./home/test.nix 
+    ./home/waybar
+    ./home/sway-home.nix
+    #inputs.nix-colors.colorSchemes.default
   ];
+  #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 	home.packages = with pkgs; [
