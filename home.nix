@@ -76,6 +76,8 @@
     #lxc
     ntfs3g
     pciutils
+
+    alacritty
     #wl-clipboard
 
   ];
@@ -269,7 +271,8 @@
       cmp-vsnip
       rainbow-delimiters-nvim
       colorizer
-      #nvim-base16
+      catppuccin-nvim
+      nvim-base16
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];

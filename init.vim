@@ -30,11 +30,22 @@ packadd termdebug
 
 "colorscheme tokyonight
 "colorscheme gruvbox
-colorscheme gruvbox-material
+"colorscheme gruvbox-material
 "colorscheme base16-default-dark
 "colorscheme base16-gruvbox
 "colorscheme base16-gruvbox-dark-soft
-                                                                                                        
+"" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+syntax on
+set termguicolors
+"colorscheme catppuccin-frappe                                                                                                        
+colorscheme gruvbox-material
+
 let g:netrw_banner = 0                                                                              
 let g:netrw_liststyle = 3                                                                           
 let g:netrw_browse_split = 4                                                                        
