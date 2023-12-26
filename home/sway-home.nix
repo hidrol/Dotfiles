@@ -7,6 +7,12 @@
     #style = builtins.readFile ./style.css;
   };
 
+  home.packages = with pkgs; [
+    grim
+    slurp
+    wl-clipboard
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -25,6 +31,10 @@
 
       exec_always kanshi
 
+      bar { 
+        swaybar_command waybar
+      }
+
       #smart_boarders on
 
     '';
@@ -38,8 +48,8 @@
       keybindings = lib.mkOptionDefault {
         # Use selected XF86 keyboard symbols
         "XF86AudioMute" = "exec ${pkgs.alsa-utils}/bin/amixer set Master toggle";
-        "XF86AudioRaiseVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 8%+";
-        "XF86AudioLowerVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 8%-";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 3%+";
+        "XF86AudioLowerVolume" = "exec ${pkgs.alsa-utils}/bin/amixer set Master 3%-";
         "XF86MonBrightnessUp" = "exec ${pkgs.brillo}/bin/brillo -q -A 3";
         "XF86MonBrightnessDown" = "exec ${pkgs.brillo}/bin/brillo -q -U 3";
         "${modifier}+Shift+o" = "move workspace to output left";

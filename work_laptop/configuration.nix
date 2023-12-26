@@ -13,7 +13,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../i3.nix
-      ../sway.nix
+      #../sway.nix
       ../nvidia.nix
       ##../hyprland.nix
     ];
@@ -167,25 +167,55 @@
     #};
   };
 
+  #sound.enable = true;
+  #nixpkgs.config.pulseaudio = true;
+  #hardware.pulseaudio.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
 
   users.defaultUserShell = pkgs.zsh;
 
   environment.shells = with pkgs; [ zsh ];
 
-  console = {
+  # console = {
     #font = "Lat2-Terminus16";
     # font = "FiraCode";
     #keyMap = "us";
-	  useXkbConfig = true;
-  };
+  # 	  useXkbConfig = true;
+  # };
 
+
+  # fonts.packages = with pkgs; [
+  #   fira-code
+  #   fira-code-symbols
+  #   #cantarell-fonts
+  #   #font-awesome_5
+  #   #font-awesome_4
+  #   #font-awesome
+  #   #(nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+  #   (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  # ];
 
   fonts.packages = with pkgs; [
+    font-awesome_5
+    cantarell-fonts
     fira-code
     fira-code-symbols
-    cantarell-fonts
-    font-awesome
-    (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "NerdFontsSymbolsOnly" ]; })
+
   ];
 
   services.openssh.enable = true;
@@ -247,6 +277,9 @@
   #programs.hyprland.enable = true;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.kernelPackages = pkgs.linuxPackages_5_15;
+
+  # needed for gtk
+  programs.dconf.enable = true;
 
 
 

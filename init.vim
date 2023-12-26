@@ -31,6 +31,9 @@ packadd termdebug
 "colorscheme tokyonight
 "colorscheme gruvbox
 colorscheme gruvbox-material
+"colorscheme base16-default-dark
+"colorscheme base16-gruvbox
+"colorscheme base16-gruvbox-dark-soft
                                                                                                         
 let g:netrw_banner = 0                                                                              
 let g:netrw_liststyle = 3                                                                           

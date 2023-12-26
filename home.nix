@@ -15,9 +15,9 @@
     ./home/test.nix 
     ./home/waybar
     ./home/sway-home.nix
-    #inputs.nix-colors.colorSchemes.default
+    inputs.nix-colors.homeManagerModules.default
   ];
-  #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-medium;
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 	home.packages = with pkgs; [
@@ -269,6 +269,7 @@
       cmp-vsnip
       rainbow-delimiters-nvim
       colorizer
+      #nvim-base16
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];

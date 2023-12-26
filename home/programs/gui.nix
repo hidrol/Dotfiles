@@ -57,6 +57,7 @@
     pciutils
     #wl-clipboard
 
+
   ];
 
 
