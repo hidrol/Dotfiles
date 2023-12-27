@@ -18,6 +18,7 @@
     inputs.nix-colors.homeManagerModules.default
   ];
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-medium;
+  #colorScheme = inputs.nix-colors.colorSchemes.catppuccin-frappe;
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 	home.packages = with pkgs; [
@@ -78,6 +79,8 @@
     pciutils
 
     alacritty
+    wl-clipboard
+    bat
     #wl-clipboard
 
   ];
@@ -224,7 +227,6 @@
     vimdiffAlias = true;
     extraPackages = with pkgs; [
       rust-analyzer
-      wl-clipboard
       rustfmt
     ];
     plugins = with pkgs.vimPlugins; [
@@ -276,6 +278,61 @@
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
     ];
+    # extraConfig = ''
+    #  
+    # '';
+  };
+
+
+  xdg.configFile."lf/icons".source = ./icons;
+  #xdg.enable = true;
+
+  programs.lf = {
+    enable = true;
+    commands = {
+      dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
+      test = ''bat $f'';
+      editor-open = ''$$EDITOR $f'';
+      mkdir = ''
+      ''${{
+        printf "Directory Name: "
+        read DIR
+        mkdir $DIR
+      }}
+      '';
+    };
+
+    keybindings = {
+
+      "\\\"" = "";
+      o = "";
+      c = "mkdir";
+      "." = "set hidden!";
+      "`" = "mark-load";
+      "\\'" = "mark-load";
+      "<enter>" = "open";
+      
+      do = "dragon-out";
+      
+      "g~" = "cd";
+      gh = "cd";
+      "g/" = "/";
+
+      ee = "editor-open";
+      V = ''''$${pkgs.bat}/bin/bat --paging=always --theme=base16 "$f"'';
+
+
+      # ...
+    };
+
+    settings = {
+      preview = true;
+      hidden = true;
+      drawbox = true;
+      icons = true;
+      ignorecase = true;
+    };
+
   };
 
   programs.tmux = {
@@ -305,6 +362,7 @@
       st = "status";
     };
   };
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

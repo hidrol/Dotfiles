@@ -1,8 +1,14 @@
 FILE=~/.nix-profile/etc/profile.d/nix.sh
+
+
 if test -f "$FILE"; then
     echo "$FILE exists."
     . ~/.nix-profile/etc/profile.d/nix.sh
 fi
+
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 #. ~/.nix-profile/etc/profile.d/nix.sh
 #neofetch

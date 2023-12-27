@@ -35,8 +35,8 @@
                 "format"= "{icon}";
                 "format-icons"= {
                     #"1"= "<span color=\"#D8DEE9\"></span>";
-                    "1"= "<span color=\"#${config.colorScheme.colors.base04}\"></span>";
-                    "2"= "<span color=\"#${config.colorScheme.colors.base0C}\"></span>";
+                    "1"= "<span color=\"#${config.colorScheme.colors.base0B}\"></span>";
+                    "2"= "<span color=\"#${config.colorScheme.colors.base0D}\"></span>";
                     #"2"= "<span color=\"#88C0D0\"></span>";
                     "3"= "<span color=\"#${config.colorScheme.colors.base0B}\"></span>";
                     #"3"= "<span color=\"#A3BE8C\"></span>";
@@ -78,8 +78,8 @@
             "idle_inhibitor"= {
                 "format"= "{icon}";
                 "format-icons"= {
-                    "activated"= "";
-                    "deactivated"= "";
+                    "activated"= " ";
+                    "deactivated"= " ";
                 };
                 "tooltip"= "true";
             };
@@ -259,17 +259,17 @@
 @define-color workspacesfocused #${config.colorScheme.colors.base03};
 @define-color tray @workspacesfocused;
 @define-color sound #${config.colorScheme.colors.base0A};
-@define-color network #5D7096;
-@define-color memory #546484;
-@define-color cpu #596A8D;
-@define-color temp #4D5C78;
+@define-color network #${config.colorScheme.colors.base02};
+@define-color memory #${config.colorScheme.colors.base02};
+@define-color cpu #${config.colorScheme.colors.base02};
+@define-color temp #${config.colorScheme.colors.base02};
 @define-color layout #${config.colorScheme.colors.base0F};
-@define-color battery #${config.colorScheme.colors.base0D};
+@define-color battery #${config.colorScheme.colors.base02};
 @define-color date #${config.colorScheme.colors.base02};
 @define-color time #${config.colorScheme.colors.base02};
 @define-color backlight #${config.colorScheme.colors.base02};
 @define-color nord_bg #${config.colorScheme.colors.base02};
-@define-color nord_bg_blue #546484;
+@define-color nord_bg_blue #${config.colorScheme.colors.base02};
 @define-color nord_light #${config.colorScheme.colors.base04};
 @define-color nord_light_font #${config.colorScheme.colors.base04};
 @define-color nord_dark_font #${config.colorScheme.colors.base02};

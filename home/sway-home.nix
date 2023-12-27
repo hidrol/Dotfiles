@@ -66,6 +66,11 @@
     };
   };
 
+  qt = {
+    enable = true;
+    style.name = "adwaita-dark";
+  };
+
 
    gtk = {
     enable = true;

@@ -1,5 +1,17 @@
 { config, pkgs, lib, ... }:
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in
 {
+
+  #services.xserver.videoDrivers  = [ "nvidia" ];
+  environment.systemPackages = with pkgs; [ nvidia-offload ];
 
   hardware.nvidia = {
 
@@ -28,7 +40,8 @@
   };
 
   hardware.nvidia.prime = {
-    sync.enable = true;
+    #sync.enable = true;
+    offload.enable = true;
 
 	# Make sure to use the correct Bus ID values for your system!
     nvidiaBusId = "PCI:1:0:0";

@@ -179,6 +179,11 @@
 
   users.defaultUserShell = pkgs.zsh;
 
+  programs.neovim.defaultEditor = true;
+
+  environment.variables = { EDITOR = "vi"; };
+
+
   environment.shells = with pkgs; [ zsh ];
 
   # console = {
