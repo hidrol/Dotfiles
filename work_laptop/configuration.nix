@@ -54,22 +54,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  sound.enable = true;
-
-  # Enable sound with pipewire.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = false;
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
-  #   pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-  # };
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hidrol = {
@@ -167,13 +151,18 @@
     #};
   };
 
-  #sound.enable = true;
-  #nixpkgs.config.pulseaudio = true;
-  #hardware.pulseaudio.enable = true;
+  
+  # nixpkgs.config.pulseaudio = true;
+  # hardware.pulseaudio.enable = true;
 
+  sound.enable = true;
+
+  #rtkit is optional but recommended
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
 
