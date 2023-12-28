@@ -72,16 +72,16 @@
   };
 
 
-   gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.gnome.gnome-themes-extra;
-      name = "Adwaita-dark";
-    };
-     cursorTheme = {
-       name = "Adwaita";
-     };
-   };
+   # gtk = {
+   #  enable = true;
+   #  theme = {
+   #    package = pkgs.gnome.gnome-themes-extra;
+   #    name = "Adwaita-dark";
+   #  };
+   #   cursorTheme = {
+   #     name = "Adwaita";
+   #   };
+   # };
   
   home.sessionVariables = {
     XCURSOR_THEME = "Adwaita";

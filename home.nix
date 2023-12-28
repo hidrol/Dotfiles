@@ -10,6 +10,7 @@
 
   # testing modules
   imports = [ 
+    ./home/gtk
     ./home/programs/no-gui.nix
     ./home/programs/gui.nix
     ./home/test.nix 
@@ -300,13 +301,22 @@
         mkdir $DIR
       }}
       '';
+      mkfile = ''
+      ''${{
+        printf "File Name: "
+        read ans
+        $EDITOR $ans
+      }}
+      '';
     };
 
     keybindings = {
 
       "\\\"" = "";
-      o = "";
-      c = "mkdir";
+      #o = "";
+      m = "";
+      md = "mkdir";
+      mf = "mkfile";
       "." = "set hidden!";
       "`" = "mark-load";
       "\\'" = "mark-load";
@@ -316,6 +326,7 @@
       
       "g~" = "cd";
       gh = "cd";
+      gn = "cd ~/.config/nixpkgs";
       "g/" = "/";
 
       ee = "editor-open";
