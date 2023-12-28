@@ -263,6 +263,7 @@
 
   hardware.nvidia.modesetting.enable = true;
   #services.xserver.videoDrivers  = [ "nvidia" ];
+  services.xserver.videoDrivers = ["intel"];
 
 
   # Load nvidia driver for Xorg and Wayland

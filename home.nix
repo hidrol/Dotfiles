@@ -16,6 +16,7 @@
     ./home/test.nix 
     ./home/waybar
     ./home/sway-home.nix
+    ./home/mako.nix
     inputs.nix-colors.homeManagerModules.default
   ];
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-medium;
@@ -306,7 +307,7 @@
       ''${{
         printf "File Name: "
         read ans
-        $EDITOR $ans
+        touch $ans
       }}
       '';
     };

@@ -1,11 +1,10 @@
 { pkgs, lib, ... }:
 {
-  imports = [./waybar];
+  imports = [
+    ./waybar
+    ./wofi
+  ];
 
-  programs.wofi = {
-    enable = true;
-    #style = builtins.readFile ./style.css;
-  };
 
   home.packages = with pkgs; [
     grim
