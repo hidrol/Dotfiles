@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
   let 
     awesomescript = import ./my-awesome-script.nix {inherit pkgs;};
     #restoretmux = import ./restoretmux.nix {inherit pkgs;};
@@ -13,9 +13,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../i3.nix
-      #../sway.nix
-      ../nvidia.nix
+      ../sway.nix
+      #../nvidia.nix
+      ../nvidia
+      #../nvidia/disable.nix
       ##../hyprland.nix
+      ../vm.nix
     ];
 
   # Bootloader.
@@ -256,9 +259,10 @@
 
   hardware.opengl.extraPackages = with pkgs; [
     vaapiVdpau # for nvidia
-    vaapiIntel
+    #vaapiIntel   #older then 23.11
     libvdpau-va-gl
     intel-media-driver
+    intel-vaapi-driver
   ];
 
   hardware.nvidia.modesetting.enable = true;
@@ -271,10 +275,20 @@
   #services.xserver.videoDrivers = ["nouveau"];
   #programs.hyprland.enable = true;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelParams = [ "i915.force_probe=25b9" ];
+
   #boot.kernelPackages = pkgs.linuxPackages_5_15;
 
   # needed for gtk
   programs.dconf.enable = true;
+
+  #boot.initrd.kernelModules = [ "i915" ];
+
+  # environment.variables = {
+  #   VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+  # };
+
+
 
 
 

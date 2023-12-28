@@ -395,5 +395,13 @@
 
   #builtins.writeFile "/path/to/output.txt" = myString;
 
+  # settings for virtmanager
+  dconf.settings = {
+  "org/virt-manager/virt-manager/connections" = {
+    autoconnect = ["qemu:///system"];
+    uris = ["qemu:///system"];
+  };
+};
+
 
 }
