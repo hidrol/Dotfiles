@@ -36,6 +36,14 @@
           ./work_laptop/configuration.nix
           ./greetd.nix
         ];
+
+      vm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        #specialArgs = { inherit inputs; };
+        modules = [
+          ./vm/configuration.nix
+          ./greetd.nix
+        ];
       };
     };
 

@@ -15,11 +15,11 @@
       #../i3.nix
       ../sway.nix
       #../nvidia.nix
-      ../nvidia
+      #../nvidia
       #../nvidia/disable.nix
       ##../hyprland.nix
       #../vm.nix
-      ../virtualbox.nix
+      #../virtualbox.nix
     ];
 
   # Bootloader.
@@ -87,12 +87,12 @@
 
 
   # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault false;
-  networking.interfaces.wlp0s20f3.useDHCP = true;
+  #networking.interfaces.wlp0s20f3.useDHCP = true;
   # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp0s31f6.ipv4.addresses = [ {
-    address = "192.168.10.95";
-    prefixLength = 24;
-  } ];
+  # networking.interfaces.enp0s31f6.ipv4.addresses = [ {
+  #   address = "192.168.10.95";
+  #   prefixLength = 24;
+  # } ];
 
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" "8.8.8.8" ];
   #networking.nameservers = [ "192.168.2.50" "1.1.1.1" "9.9.9.9." "8.8.8.8" ];
@@ -134,7 +134,7 @@
   documentation.man.enable = true;
   documentation.dev.enable = true;
 
-  services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.enable = true;
 
   # programs.light.enable = true;
   # xev keycode have to be substracted with 8
@@ -258,17 +258,17 @@
     driSupport32Bit = true;
   };
 
-  hardware.opengl.extraPackages = with pkgs; [
-    vaapiVdpau # for nvidia
-    #vaapiIntel   #older then 23.11
-    libvdpau-va-gl
-    intel-media-driver
-    intel-vaapi-driver
-  ];
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   vaapiVdpau # for nvidia
+  #   #vaapiIntel   #older then 23.11
+  #   libvdpau-va-gl
+  #   intel-media-driver
+  #   intel-vaapi-driver
+  # ];
 
-  hardware.nvidia.modesetting.enable = true;
+  # hardware.nvidia.modesetting.enable = true;
   #services.xserver.videoDrivers  = [ "nvidia" ];
-  services.xserver.videoDrivers = ["intel"];
+  # services.xserver.videoDrivers = ["intel"];
 
 
   # Load nvidia driver for Xorg and Wayland
