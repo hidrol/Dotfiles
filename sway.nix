@@ -86,10 +86,10 @@ in
   # ];
 
   environment.systemPackages = with pkgs; [
-    #kanshi
+    kanshi
     #alacritty # gpu accelerated terminal
-    dbus-sway-environment
-    configure-gtk
+    # dbus-sway-environment
+    # configure-gtk
     #wayland
     #xdg-utils # for opening default programs when clicking links
     #glib # gsettings

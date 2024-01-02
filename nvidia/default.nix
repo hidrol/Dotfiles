@@ -20,7 +20,7 @@ in
 
 	# Enable power management (do not disable this unless you have a reason to).
 	# Likely to cause problems on laptops and with screen tearing if disabled.
-	  powerManagement.enable = false;
+	  powerManagement.enable = true;
     powerManagement.finegrained = false;
 
 
@@ -36,7 +36,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   hardware.nvidia.prime = {

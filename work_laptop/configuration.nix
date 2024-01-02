@@ -265,7 +265,7 @@
     intel-vaapi-driver
   ];
 
-  hardware.nvidia.modesetting.enable = true;
+  #hardware.nvidia.modesetting.enable = true;
   #services.xserver.videoDrivers  = [ "nvidia" ];
   services.xserver.videoDrivers = ["intel"];
 
