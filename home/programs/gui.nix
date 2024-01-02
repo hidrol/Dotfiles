@@ -55,7 +55,7 @@
     lxc
     ntfs3g
     pciutils
-    #wl-clipboard
+    wl-clipboard
 
 
   ];

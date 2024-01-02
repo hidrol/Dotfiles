@@ -48,6 +48,14 @@
           #./home/programs/gui.nix 
         ];
       };
+      nogui = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ 
+          ./home/nogui/home.nix 
+          #./home/programs/gui.nix 
+        ];
+      };
     };
   };
 }
