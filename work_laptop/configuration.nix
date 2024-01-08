@@ -18,7 +18,8 @@
       ../nvidia
       #../nvidia/disable.nix
       ##../hyprland.nix
-      ../vm.nix
+      #../vm.nix
+      ../intel
     ];
 
   # Bootloader.
@@ -133,7 +134,7 @@
   documentation.man.enable = true;
   documentation.dev.enable = true;
 
-  services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.enable = true;
 
   # programs.light.enable = true;
   # xev keycode have to be substracted with 8
@@ -251,23 +252,23 @@
   #environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
 
   # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   driSupport32Bit = true;
+  # };
 
-  hardware.opengl.extraPackages = with pkgs; [
-    vaapiVdpau # for nvidia
-    #vaapiIntel   #older then 23.11
-    libvdpau-va-gl
-    intel-media-driver
-    intel-vaapi-driver
-  ];
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   vaapiVdpau # for nvidia
+  #   #vaapiIntel   #older then 23.11
+  #   libvdpau-va-gl
+  #   intel-media-driver
+  #   intel-vaapi-driver
+  # ];
 
   #hardware.nvidia.modesetting.enable = true;
   #services.xserver.videoDrivers  = [ "nvidia" ];
-  services.xserver.videoDrivers = ["intel"];
+  #services.xserver.videoDrivers = ["intel"];
 
 
   # Load nvidia driver for Xorg and Wayland
