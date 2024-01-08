@@ -13,18 +13,23 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../i3.nix
-      ../sway.nix
+      #../sway.nix
       #../nvidia.nix
-      ../nvidia
+      #../nvidia
       #../nvidia/disable.nix
       ##../hyprland.nix
       #../vm.nix
       ../intel
+      ../greetd.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+	# services.xserver.displayManager.gdm.enable = true;
+	# services.xserver.enable = true;
+	# services.xserver.desktopManager.gnome.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -72,10 +77,10 @@
     #];
   };
 
-  sound.mediaKeys = {
-    enable = true;
-    volumeStep = "5%";
-  };
+  # sound.mediaKeys = {
+  #   enable = true;
+  #   volumeStep = "5%";
+  # };
   
   virtualisation.lxd.enable = true;
   virtualisation.docker.enable = true;
@@ -162,13 +167,13 @@
   sound.enable = true;
 
   #rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  # };
 
   users.defaultUserShell = pkgs.zsh;
 
@@ -252,11 +257,11 @@
   #environment.etc."testtest".source = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/restore.sh";
 
   # Enable OpenGL
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   driSupport32Bit = true;
-  # };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   # hardware.opengl.extraPackages = with pkgs; [
   #   vaapiVdpau # for nvidia

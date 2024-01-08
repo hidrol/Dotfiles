@@ -48,7 +48,8 @@
     man-pages
     #firefox
     ccls #c language server
-    ctags
+    #ctags
+    universal-ctags
     nil # nix language server
     nodePackages.pyright
     #vscode

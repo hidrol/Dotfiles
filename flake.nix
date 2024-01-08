@@ -34,7 +34,7 @@
         #specialArgs = { inherit inputs; };
         modules = [
           ./work_laptop/configuration.nix
-          ./greetd.nix
+          #./greetd.nix
         ];
       };
     };
