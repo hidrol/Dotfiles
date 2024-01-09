@@ -11,7 +11,7 @@
   # testing modules
   imports = [ 
     ./home/gtk
-    ./home/programs/no-gui.nix
+    #./home/programs/no-gui.nix
     ./home/programs/gui.nix
     ./home/test.nix 
     ./home/waybar
@@ -71,7 +71,6 @@
     #joplin-desktop
     #nextcloud-client
     #ccls #c language server
-    #ctags #for neovim
     htop
     usbutils
     #firefox
@@ -85,6 +84,9 @@
     wl-clipboard
     bat
     #wl-clipboard
+    libgcc
+    cmake
+    gcc
 
   ];
 
@@ -281,6 +283,7 @@
       nvim-base16
       # rainbow doesnt work
       #(fromGitHub "HEAD" "HiPhish/nvim-ts-rainbow2")
+      rust-vim
     ];
     # extraConfig = ''
     #  
