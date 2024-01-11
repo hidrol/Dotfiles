@@ -131,7 +131,7 @@
     xorg.xhost
     #restoretmux
     brillo
-    #kanshi
+    kanshi
   ];
 
   hardware.brillo.enable = true;
